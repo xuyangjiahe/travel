@@ -1,0 +1,5 @@
+<!--pages/outPage/outPage.wxml-->
+<view>
+  
+  <web-view src="{{webUrl}}"></web-view>
+</view>

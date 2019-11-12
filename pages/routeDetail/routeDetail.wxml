@@ -1,0 +1,166 @@
+<!--pages/routeDetail/routeDetail.wxml 线路详情-->
+<import src="../../wxParse/wxParse.wxml"/>
+<!-- //这里data中article为bindName -->
+
+<view class="route_detal">
+<view class="top_bg">
+  <view style="width:100%;height:{{statusBarHeight}}px;background-color:#fff;" class="top_bar"></view>
+  <view class="status-bar">
+    <view >
+    <!-- <view > -->
+      <image class="login_out_btn"  wx:if="{{isScanCodeQr != '2' || isShareOpen != '2'}}" bindtap="getBackIndePage"  src="../../images/fanhui.png"></image>
+      <image class="back_home" bindtap="getBacHhome"  src="../../images/home-icon.png"></image>
+      <!-- <navigator class="login_bg" open-type="navigateBack" delta="1"></navigator> -->
+      <!-- <view class="login_bg" bindtap="getBackIndePage"></view> -->
+    </view>
+  </view>
+</view>
+
+  <view class="line_vide">
+  <!-- 自动定位当前城市视频 -->
+  <!-- <view>{{cityData}}</view> -->
+  <!-- http://1259760233.vod2.myqcloud.com/71f82148vodcq1259760233/692a1d875285890793868349758/7i3pNVNQ9l8A.mp4"  短视频-->
+  <!-- https://ceshi.cxzjzg.com/painting/video/20191014163938ok13.mp4  书画 -->
+  <!-- https://lvyou.cxzjzg.com/tourismprogram/userfiles/1/files/videos/videos/2019/11/O1OKxuLuZNgA.mp4 小程序-->
+    <view class="video_box" >
+    <video class="video_img"  id="myVideo" src="{{videoUrl}}"  enable-danmu="false" danmu-btn="false"  autoplay="{{true}}"  controls='{{false}}' enable-play-gesture='false' show-center-play-btn='false' bindended="playVideoEnd"></video>
+      <!-- <video class="video_img"  id="myVideo" src="https://ceshi.cxzjzg.com/painting/video/20191014163938ok13.mp4"  enable-danmu="false" danmu-btn="false"  autoplay="{{true}}"  controls='{{false}}' enable-play-gesture='false' show-center-play-btn='false' bindended="playVideoEnd"></video> -->
+      <text class="play_times">播放量：{{playTimes}}</text>
+      <cover-image class="video_play_btn" src="../../images/play-btn.png" bindtap="playVideoAgain" wx:if="{{playBtn}}"></cover-image>
+    </view>
+  </view>
+  <!-- 只有销售员显示 -->
+  <view class="salesman_box" wx:if="{{userType=='2'}}">
+    <view class="salesman_info" data-saleid="{{salesInfo.saleid}}">
+      <text class="li">旅行社：{{salesInfo.travelname}}</text>
+      <text class="li">旅游顾问：{{salesInfo.name}}</text>
+      <text class="li" bindtap="callPhone">电话：{{salesInfo.phone}} <text class="play_btn" >(一键拨打)</text> </text>
+      <text class="li">固话： {{salesInfo.telephone}}</text>
+      <text class="li">微信号：{{salesInfo.weixin}}</text>
+    </view>
+    <view class="salesman_qr">
+      <image class="qr_img" src="{{salesInfo.qrcode}}"></image>
+      <!-- <text class="qr_name">微信二维码</text> -->
+    </view>
+  </view>
+  <!-- 行程信息 -->
+  <view class="treval_info">
+    <view class="treval_name">
+      <view class="treval_title">
+        <text class="title_name">{{lineInfo.name}}</text>
+      </view>
+      <view class="treval_days">团期：{{lineInfo.grouptime}}</view>
+      <view class="treval_days">天数：{{lineInfo.daytime}}</view>
+      <view class="treval_price">
+        <text class="price left">价格：￥{{lineInfo.price}}</text>
+        <text class="price right">儿童价格：￥{{lineInfo.childrenprice}}</text>
+      </view>
+    </view>
+    <!-- 行程特色 -->
+    <view class="treval_special">
+      <view class="title_name">行程特色</view>
+      <!-- <image class="special_img" src="{{lineInfo.image1}}"></image>  -->
+      <swiper  class="swiper_img" indicator-dots="{{indicatorDots}}" 
+        autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" >
+        <swiper-item wx:for="{{lineInfo.image1}}" wx:key="{{item}}" bindtap="goContent" data-url="{{item}}">
+          <image class="swiper_img" src="{{item}}" mode='scaleToFill' ></image>
+        </swiper-item>
+      </swiper>
+      <view class="con">{{introduce}}</view>
+    </view>
+    <!-- 详细行程 -->
+    <view class="treval_detail">
+      <view class="title_name">详细行程</view>
+      <view class="rich_text" wx:if="{{richTextType === '1'}}">
+        <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+      </view>
+      
+
+      <view class="rich_text" wx:if="{{richTextType === '2'}}">
+        <view  class="rich_box" wx:for="{{richImgLists}}"  wx:key="key">
+          <image class="rich_img" src="{{item}}" bindload="imageLoad" style="height:{{switerimgHeight}}rpx" mode="widthFix" bindtap='previewImg' data-effect_pic='{{richImgLists}}'  data-src='{{item}}' id="{{index}}"></image>
+        </view>
+        
+      </view>
+      <!-- <web-view src="https://view.officeapps.live.com/op/view.aspx?src=lvyou.cxzjzg.com/111.docx"></web-view> -->
+      <!-- <rich-text class="rich_text" nodes="content"></rich-text> -->
+      <!-- <view></view> -->
+      <!-- <view> -->
+        <!-- <iframe src="http://www.docpe.com/Download/103013391556/103013391556.html" width="100%" height="100%" frameborder="0"></iframe> -->
+        <!-- <view> -->
+          <!-- <web-view src="https://lvyou.cxzjzg.com/123.htm"></web-view> -->
+        <!-- </view> -->
+      <!-- </view> -->
+      <!-- <view class="treval_detail_btn" bindtap="toSeeFileDetai">查看详细行程</view> -->
+    </view>
+    
+    <!-- 接待标准 -->
+    <view class="treval_special">
+      <view class="title_name name_cur">接待标准</view>
+      <view class="con">{{lineInfo.reception}}</view>
+    </view>
+    <!-- 费用包含 -->
+    <view class="treval_special">
+      <view class="title_name name_cur">费用包含</view>
+      <view class="con">{{lineInfo.costcontain}}</view>
+    </view>
+    <!-- 费用不含 -->
+    <view class="treval_special">
+      <view class="title_name name_cur">费用不含</view>
+      <view class="con">{{lineInfo.costnotcontain}}</view>
+    </view>
+    <!-- 温馨提示 -->
+    <!-- {{userType}} -->
+    <view class="treval_special">
+      <view class="title_name name_cur">温馨提示</view>
+      <view class="con">{{lineInfo.reminder}}</view>
+      <image class="special_img" src="{{lineInfo.image2}}" mode='scaleToFill'></image>
+    </view>
+  </view>
+  <!-- userType:{{userType}}
+  isScanCodeQr:{{isScanCodeQr}}
+  isShareOpen:{{isShareOpen}}
+  all:{{userType == '1' && isScanCodeQr !='2' && isShareOpen != '2'}} -->
+  <!-- {{isShareOpen}} -->
+  <!-- 只有旅行社展示 -->
+  <view class="qr_box" bindtap="showPopupQr" wx:if="{{userType == '1' && isScanCodeQr !='2' && isShareOpen != '2'}}">
+  <!-- 二维码规则 -->
+    <!-- <button class='share_btn' id="shareBtn" open-type="share" bindtap="toSharePage"  ><image class="qr_img2" src="../../images/qr_f.png"></image></button> -->
+    <button class='share_btn' id="shareBtn"  bindtap="toSharePage"  ><image class="qr_img2" src="../../images/qr_f.png"></image></button>
+    
+  </view>
+  <!-- 旅行社点击分享，对方点开之后，此页面没有销售信息
+
+销售员点击分享，对方点开之后，有销售员信息
+
+游客通过分享打开的页面，没有此分享按钮 -->
+ <!-- 二维码弹窗 -->
+  <van-popup show="{{ showQr }}" bind:close="onCloseQr">
+    <view class="qr_ifram">
+    <!-- 二维码弹窗 -->
+      <view class="ifram_box">
+        <!-- <image class="ifram_img" src="{{qrURLSave}}"></image> -->
+        
+        <canvas class="ifram_img" canvas-id="myQrcode" style="background:#fff;width:{{code_w}}px; height:{{code_w}}px;"/>
+        <!-- <canvas class="ifram_img" canvas-id="myQrcode" /> -->
+        <view class="qr_tip1">点击保存二维码</view>
+        <view class="qr_tip2">保存至您的手机去分享</view>
+        <!-- <view class="qr_btn" bindtap="saveQrCode" bindlongtap="saveQrCode">保存</view> -->
+        <button class="qr_btn"   open-type="getUserInfo" bindgetuserinfo="saveQrCode">保存</button>
+      </view>
+    </view>
+    
+  </van-popup>
+  <!-- 登录弹窗 -->
+  <van-popup show="{{ show }}"  overlay-style="background-color: rgba(255,255,255,0.7);height:100%;width: 100%;" custom-style="background-color: rgba(255,255,255,0);">
+    <view class="popup_bg" >
+      <button class="login_type sale"  open-type="getUserInfo" bindgetuserinfo="saleLogin">销售员登录</button>
+      <button class="login_type vistor"   open-type="getUserInfo" bindgetuserinfo="travelLogin">游客登录</button>
+    </view>
+  </van-popup>
+
+  <text class="browse_times">阅读量：{{lineInfo.readnum}}</text>
+  <view class="suport">技术支持：遨游视界</view>
+</view>
+
+

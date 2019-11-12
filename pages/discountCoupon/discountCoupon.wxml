@@ -1,0 +1,37 @@
+<!--pages/ discountCoupon/ discountCoupon.wxml 优惠券-->
+<cover-view class="coupon">
+<!-- <cover-view style="width:100%;height:{{statusBarHeight}}px"></cover-view> -->
+
+  <cover-view class="coupon_main">
+    <cover-view class="status-bar">
+      <cover-image class="login_out_btn" bindtap="getBackIndePage"  src="../../images/back-f.png" ></cover-image>
+      <!-- <navigator class="login_bg" open-type="navigateBack" delta="1"></navigator> -->
+      <!-- <cover-view class="login_bg" bindtap="getBackIndePage" ></cover-view> -->
+      <!-- <cover-view>返回</cover-view> -->
+    </cover-view>
+    <cover-image class="bg" src="../../images/count-bg.png"></cover-image>
+    <cover-view class="user_info">
+      <cover-image class="head_icon" src="{{visterInfo.thridsicon}}"></cover-image>
+      <cover-view class="info">
+        <cover-view class="name">{{visterInfo.thridsname}}</cover-view>
+        <cover-view class="num">{{visterInfo.phone}}</cover-view>
+      </cover-view>
+    </cover-view>
+    <cover-view  class="sub_btn"  bindtap="saveImg">
+      <cover-view class="btn_text">长按保存</cover-view>  
+    </cover-view>
+    <!-- <cover-view>长按保存</cover-view> -->
+      <!-- <button class="sub_btn"  bindtap="saveImg">长按保存</button> -->
+    
+    <cover-view class="tip">
+      <cover-image class="logo" src="../../images/logo1.png"></cover-image>
+      <cover-view class="tip_text">遨游视界</cover-view>
+    </cover-view>
+  </cover-view>
+  
+  <!-- <cover-image src="{{poster}}"></cover-image> -->
+</cover-view>
+
+<canvas class="canvas_box" style="width:{{systemInfo.screenWidth*2}}px;height:{{systemInfo.screenHeight*2}}px"  canvas-id="canvasPoster"></canvas>
+
+

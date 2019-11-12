@@ -1,0 +1,12 @@
+<!--pages/travelIntro/travelIntro.wxml-->
+<view class="intro">
+  <image class="intro_logo" src='{{travelInfo.icon}}'></image>
+  <text class="intro_name">{{travelInfo.nickname}}</text>
+  <view class="intor_info">
+    <text class="intor_title">公司简介</text>
+    <text class="intor_com">{{travelInfo.traveldesc}} </text>
+    <text class="intor_title">公司介绍</text>
+    <rich-text class="intor_com" nodes="{{travelContent}}"></rich-text>
+  </view>
+  
+</view>

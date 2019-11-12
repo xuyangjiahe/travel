@@ -1,0 +1,250 @@
+/* pages/itinerary/itinerary.wxss */
+.top_fiexd {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 140rpx;
+  background: #fff;
+}
+.itinerary {
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  padding: 30rpx;
+  margin-top: 146rpx;
+}
+.status-bar {
+  width: 100%;
+  height: 96rpx;
+}
+.title_name{
+  position: fixed;
+  top: 37rpx;
+  left: 0rpx;
+  width: 300rpx;
+  height: 97rpx;
+  text-align: left;
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: rgba(51,51,51,1);
+  /* line-height: 100rpx; */
+  padding-left: 20rpx;
+  box-sizing: border-box;
+  padding-top: 28rpx;
+}
+.title_name_1 {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  /* margin-left:30rpx; */
+  
+  cursor: pointer;
+  text-align: left;
+  /* line-height: 98rpx; */
+  vertical-align: middle;
+  margin-left: 30rpx;
+}
+.login_out_btn {
+  display: inline-block;
+  width: 22rpx;
+  height: 40rpx;
+  /* margin-left:30rpx; */
+  /* margin-top:28rpx; */
+  cursor: pointer;
+  vertical-align: middle;
+}
+.back_home{
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+  margin-left:30rpx;
+  /* margin-top:28rpx; */
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+
+.login_bg {
+  position: fixed;
+  top: 50rpx;
+  left: 30rpx;
+  width: 100rpx;
+  height: 100rpx;
+  text-align: center;
+}
+.itinerary_lists {
+  width: 100%;
+  height: auto;
+}
+.itinerary_li {
+  width: 100%;
+  height: 188rpx;
+  cursor: pointer;
+  margin-bottom: 30rpx;
+}
+.li_img {
+  display: inline-block;
+  width: 168rpx;
+  height: 188rpx;
+  border-radius:10rpx;
+  vertical-align: middle;
+}
+.li_right {
+  display: inline-block;
+  width: 487rpx;
+  height: 188rpx;
+  vertical-align: middle;
+  margin-left: 30rpx;
+  
+}
+.itinerary_name {
+  display: block;
+  width: 100%;
+  height: 34rpx;
+  text-align: left;
+  font-size:32rpx;
+  font-family:PingFang SC;
+  font-weight:500;
+  color:rgba(51,51,51,1);
+  line-height:34rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+  
+}
+.itinerary_info {
+  display: block;
+  width: 100%;
+  height: 92rpx;
+  font-size:26rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(102,102,102,1);
+  line-height:46rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* white-space: nowrap; */
+}
+.itinerary_num {
+  display: block;
+  width: 100%;
+  height: 34rpx;
+  font-size:22rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(153,153,153,1);
+  line-height:46rpx;
+  text-align: right;
+}
+.qr_box {
+  position: fixed;
+  bottom: 120rpx;
+  right: 30rpx;
+  width:120rpx;
+  height:120rpx;
+  background:linear-gradient(0deg,rgba(110,115,254,1) 0%,rgba(62,141,254,1) 100%);
+  box-shadow:0px 0px 49rpx 5rpx rgba(64,140,254,0.48);
+  border-radius:60rpx;
+}
+.qr_img {
+  display: block;
+  width: 54rpx;
+  height: 54rpx;
+  margin-top:33rpx; 
+  margin-left:33rpx; 
+}
+/* 二维码弹窗 */
+.qr_ifram {
+  width:690rpx;
+  height:850rpx;
+  background:rgba(255,255,255,1);
+  border-radius:6rpx;
+  
+}
+.ifram_box {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  padding-top:150rpx;
+}
+.ifram_img {
+  display: block;
+  width: 303rpx;
+  height: 303rpx;
+  margin: 0 auto;
+}
+.qr_tip1 {
+  width: 100%;
+  height:60rpx;
+  font-size:32rpx;
+  font-family:PingFang SC;
+  font-weight:500;
+  color:rgba(51,51,51,1);
+  line-height: 60rpx;
+  text-align: center;
+  margin-top: 16rpx;
+}
+.qr_tip2 {
+  width: 100%;
+  height:60rpx;
+  font-size:26rpx;
+  font-family:PingFang SC;
+  font-weight:500;
+  color:rgba(153,153,153,1);
+  line-height: 60rpx;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+.qr_btn {
+  width:258rpx;
+  height:88rpx;
+  background:linear-gradient(100deg,rgba(150,94,254,1) 0%,rgba(62,141,254,1) 100%);
+  border-radius:44rpx;
+  font-size:36rpx;
+  font-family:PingFang SC;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  line-height: 88rpx;
+  text-align: center;
+  margin: 0 auto;
+}
+.suport {
+  width: 100%;
+  height: 60rpx;
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(26,26,26,1);
+  line-height:60rpx;
+  text-align: center;
+}
+.login_type {
+  width:360rpx;
+  height:90rpx;
+  
+  border-radius:45rpx;
+  font-size:32rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  color:rgba(255,255,255,1);
+  text-align: center;
+  line-height: 90rpx;
+  margin-bottom: 60rpx;
+}
+.sale {
+  background:linear-gradient(7deg,rgba(253,183,25,1) 0%,rgba(255,212,21,1) 100%);
+  box-shadow:0px 2px 16px 0px rgba(253,184,25,1);
+}
+.trale{
+  background:linear-gradient(0deg,rgba(59,143,254,1) 0%,rgba(145,96,254,1) 100%);
+  box-shadow:0px 2px 16px 0px rgba(107,117,254,1);
+}
+.vistor {
+  background:linear-gradient(0deg,rgba(253,117,117,1) 0%,rgba(254,53,54,1) 100%);
+  box-shadow:0px 2px 16px 0px rgba(253,98,99,1);
+}

@@ -1,0 +1,149 @@
+/* pages/completeInfo.wxss */
+.status-bar {
+  width: 100%;
+  height: 96rpx;
+  
+}
+.title_name{
+  position: fixed;
+  top: 37rpx;
+  left: 0rpx;
+  width: 336rpx;
+  height: 97rpx;
+  text-align: left;
+  font-size: 36rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: rgba(51,51,51,1);
+  /* line-height: 100rpx; */
+  padding-left: 20rpx;
+  box-sizing: border-box;
+  padding-top: 28rpx;
+}
+.title_name_1 {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+  text-align: left;
+  vertical-align: middle;
+  margin-left: 30rpx;
+}
+.login_out_btn {
+  display: inline-block;
+  width: 22rpx;
+  height: 40rpx;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.back_home{
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+  margin-left:30rpx;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.complete {
+  width: 750rpx;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 30rpx;
+  
+}
+.top {
+  width: 750rpx;
+  height:244rpx;
+  border-bottom:20rpx solid #FAFAFA;
+  box-sizing: border-box;
+}
+.travel_icon {
+  display: inline-block;
+  width:164rpx;
+  height:164rpx;
+  border-radius:8rpx;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+.travel_name {
+  display: inline-block;
+  width: 500rpx;
+  height:40rpx;
+  font-size:36rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  color:rgba(51,51,51,1);
+  line-height:40rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align:top;
+  margin-left: 30rpx;
+  vertical-align: middle;
+}
+.info_box {
+
+}
+.info_title {
+  width: 100%;
+  height: 125rpx;
+  line-height: 125rpx;
+  text-align: left;
+  font-size:36rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  color:rgba(51,51,51,1);
+}
+.list {
+  width: 100%;
+  height: 80rpx;
+  margin-bottom: 30rpx;
+
+}
+.list_title {
+  float: left;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:500;
+  color:rgba(51,51,51,1);
+  line-height:80rpx;
+  text-align: left;
+}
+.inp {
+  float: right;
+  width:499rpx;
+  height:80rpx;
+  background:rgba(255,255,255,1);
+  border:1rpx solid rgba(231,231,231,1);
+  border-radius:6rpx;
+  text-align: right;
+  box-sizing: border-box;
+  padding-left: 24rpx;
+  padding-right: 24rpx;
+  line-height: 80rpx;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(153,153,153,1);
+  cursor: pointer;
+}
+.next-icon {
+  display: inline-block;
+  width:15rpx;
+  height:25rpx;
+  margin-left: 14rpx;
+}
+button {
+  width:282rpx;
+  height:86rpx;
+  background:linear-gradient(100deg,rgba(150,94,254,1) 0%,rgba(62,141,254,1) 100%);
+  box-shadow:0px 2rpx 16rpx 0px rgba(107,117,254,1);
+  border-radius:43rpx;
+  font-size:32rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  color:rgba(255,255,255,1);
+  line-height: 86rpx;
+  text-align: center;
+  margin: 120rpx auto;
+}

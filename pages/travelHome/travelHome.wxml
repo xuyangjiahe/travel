@@ -1,0 +1,36 @@
+<!--pages/travelHome/travelHome.wxml 旅行社首页-->
+<view class="travel_home">
+<view class="top_fiexd">
+  <view style="width:100%;height:{{statusBarHeight}}px"></view>
+  <view class="status-bar">
+    <image class="login_out_btn" bindtap="getBackIndePage" src="../../images/login-out-icon.png" ></image>
+    <!-- <navigator class="login_bg" target="miniProgram" open-type="exit"></navigator> -->
+    <view class="login_bg" bindtap="getBackIndePage" ></view>
+  </view>
+</view>
+
+  <view class="travel_top">
+    <image class="top_bg" src="../../images/home-bg.png"></image>
+    <view class="travel_info">
+      <image class="travel_logo" src="{{travelImg}}"></image>
+      <text class="travel_name">{{travelName}}</text>
+      <!-- <image class="next_icon" src="../../images/mext-icon.png"></image> -->
+      <view class="to_see_detail" bindtap="toSeeDetail">查看详情> </view>
+    </view>
+    <view class="travel_instract">
+      公司简介：{{travelIntro}}
+    </view>
+  </view>
+  <view class="home_bottom">
+    <view class="list_box">
+      <view class="list" wx:for="{{homeLists}}" wx:key="{{item}}" data-id="{{item.cid}}" bindtap="toSeeLine">
+        <image class="list_img" src="{{item.image}}"></image>
+        <text class="list_name">{{item.name}}</text>
+      </view>
+    </view>
+    <view class="btn_box">
+      <view class="login_btn" is-link bindtap="onConfirmFun">确认件</view>
+    </view>
+  </view>
+  
+</view>

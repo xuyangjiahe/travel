@@ -1,0 +1,38 @@
+<!--pages/salesmanInfo/salesmanInfo.wxml 销售员认证-->
+<view style="width:100%;height:{{statusBarHeight}}px;background-color:#fff;" class="top_bar"></view>
+  <view class="status-bar">
+    <view class="title_name">
+      <!-- <image class="login_out_btn" bindtap="getBackIndePage"  src="../../images/fanhui.png" ></image> -->
+      <image class="back_home" bindtap="getBacHhome"  src="../../images/home-icon.png"></image>
+      <view class="title_name_1">{{title}}</view>
+    </view>
+  </view>
+<view class="salesman">
+  <view class="page_tip">首次登陆需填写您的个人信息</view>
+  <view class="list">
+    <view class="li"><text class="li_name">旅行社名称</text><input class="inp" placeholder="请输入" type="text" bindinput="gettravelname" value="{{travelname}}"></input></view>
+    <view class="li"><text class="li_name">省份选择</text><view class="inp" bindtap="showPopup" >{{areaName}}<image class="next-icon"  src="../../images/next-icon.png"></image></view></view>
+    <view class="li"><text class="li_name">姓名</text><input class="inp" placeholder="请输入"  type="text" bindinput="getname" value="{{name}}"></input></view>
+    <view class="li"><text class="li_name">手机号</text><input class="inp" maxlength="11" placeholder="请输入" bindinput="getphone" type="number" value="{{phone}}"></input></view>
+    <view class="li"><text class="li_name">固定电话</text><input class="inp" placeholder="请输入" type="number" bindinput="gettelephone" value="{{telephone}}"></input></view>
+    <view class="li"><text class="li_name">微信号</text><input class="inp" placeholder="请输入" type="text" bindinput="getweixin" value="{{weixin}}"></input></view>
+  </view>
+  <view class="qr_info">
+    <view class="qr_left">
+      <view class="title">上传二维码</view>
+      <view class="qr_upload" bindtap="upLoadImgFun">
+        <image class="img" src="{{qrcode}}" wx:if="{{qrcode == '../../images/upload_img.png'}}"></image>
+        <image class="img" src="{{baseUrl}}{{qrcode}}" wx:else></image>
+      </view>
+    </view>
+    <text class="qr_right">成为本站销售需接受本站会员游客\n持站内抵扣卷抵扣相应的团费：\n 1、国内长线抵扣50元/人团费 \n 2、出境线抵扣100元/人团费 \n 3、抵扣卷仅限每人每次使用一张 \n 4、特价团及汽车团不参与此抵扣 \n 5、解释权归报名旅行社所有 \n</text>
+    
+  </view>
+  <view class="btn_submit" bindtap="sunmitBtn">提交</view>
+
+  <van-popup show="{{ show }}" position="bottom" bind:close="onClose">
+    <van-area area-list="{{ areaList }}" columns-num="{{ 1 }}" title="省份" bind:confirm="onConfirm" bind:cancel="onCancel" bind:change="onChange"/>
+  </van-popup>
+</view>
+
+

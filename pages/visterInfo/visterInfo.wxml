@@ -1,0 +1,35 @@
+<!--pages/visterInfo/visterInfo.wxml 游客认证页面-->
+<view style="width:100%;height:{{statusBarHeight}}px;background-color:#fff;" class="top_bar"></view>
+  <view class="status-bar">
+    <view class="title_name">
+      <!-- <image class="login_out_btn" bindtap="getBackIndePage"  src="../../images/fanhui.png" ></image> -->
+      <image class="back_home" bindtap="getBacHhome"  src="../../images/home-icon.png"></image>
+      <view class="title_name_1">{{title}}</view>
+    </view>
+  </view>
+<view class="salesman">
+  <!-- <view class="page_tip">首次登陆需填写您的个人信息</view> -->
+  <view class="list">
+    <view class="li"><text class="li_name">省份选择</text><view class="inp" bindtap="showPopup" >{{areaName}}<image class="next-icon"  src="../../images/next-icon.png"></image></view></view>
+    <view class="li"><text class="li_name">姓名</text><input class="inp" placeholder="请输入" bindinput="getname"  value="{{name}}"></input></view>
+    <view class="li"><text class="li_name">手机号</text><input class="inp" placeholder="请输入" maxlength="11" bindinput="getphone"  value="{{phone}}"></input></view>
+    <view class="li"><text class="li_name">性别</text><view class="inp"  bindtap="showSexPopup">{{sexName}}<image class="next-icon"  src="../../images/next-icon.png"></image></view></view>
+    <view class="li"><text class="li_name">地址</text><input class="inp" placeholder="请输入" bindinput="getaddress"  value="{{address}}"></input></view>
+  </view>
+  <view class="vister_tip">凡注册成为本站会员即获得旅游团费 抵扣券一张，详情见抵扣券。</view>
+  <view class="btn_submit" bindtap="submitFun">提交</view>
+
+  <van-popup show="{{ show }}" position="bottom" bind:close="onClose">
+    <van-area area-list="{{ areaList }}" columns-num="{{ 1 }}" title="省份" bind:confirm="onConfirm" bind:cancel="onCancel" bind:change="onChange"/>
+  </van-popup>
+  <van-popup show="{{ isShowSexIfram }}" position="bottom" bind:close="closeSexPopup">
+    <van-picker
+    show-toolbar
+    title="选择性别"
+    columns="{{ sexList }}"
+    bind:cancel="onCancelSex"
+    bind:confirm="onConfirmSex"
+  />
+  </van-popup>
+  
+</view>

@@ -1,0 +1,20 @@
+<!--pages/agencLogin.wxml-->
+<!-- <text>pages/agencLogin.wxml</text> -->
+<view class="agency_login">
+  <view class="agency_main">
+    <image class="logo_img" src="../../images/logo.png"></image>
+    <view class="login_box">
+      <image class="login_bg" src="../../images/login_bg.png"></image>
+      <view class="list">
+        <view class="login_list">
+          <image class="icon" src="../../images/user-icon.png"></image><input class="inp" placeholder='请输入登录账号' type="text" value="{{accountNum}}" bindinput="getAccountNum"></input>
+        </view>
+        <view class="login_list last_li">
+          <image class="icon" src="../../images/password.png"></image><input class="inp inp_password" placeholder='请输入登录密码' type="password" value="{{password}}" bindinput="getPassword"></input>
+        </view>
+        <button bindtap="login">确定</button>
+      </view>
+      
+    </view>
+  </view>
+</view>

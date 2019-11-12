@@ -1,0 +1,431 @@
+/* pages/routeDetail/routeDetail.wxss */
+@import '/wxParse/wxParse.wxss';
+.route_detal {
+  width: 750rpx;
+  height: auto;
+
+}
+.top_bg {
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 160rpx;
+  background: #fff;
+  z-index: 99999;
+}
+.top_bar {
+  background: #fff;
+}
+.status-bar {
+  width: 100%;
+  height: 96rpx;
+  
+}
+.login_out_btn {
+  display: inline-block;
+  width: 22rpx;
+  height: 40rpx;
+  margin-left:30rpx;
+  margin-top:28rpx;
+  cursor: pointer;
+}
+.back_home{
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+  margin-left:30rpx;
+  margin-top:28rpx;
+  cursor: pointer;
+}
+.login_bg {
+  position: fixed;
+  top: 50rpx;
+  left: 30rpx;
+  width: 100rpx;
+  height: 100rpx;
+  text-align: center;
+}
+.video_play_btn {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60rpx;
+  height: 60rpx;
+
+}
+.line_vide {
+  width: 100%;
+  height: 430rpx;
+  margin-top:160rpx;
+}
+.video_box {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.video_img{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.play_times {
+  position: absolute;
+  right: 30rpx;
+  bottom:20rpx;
+  width: 153rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  font-size:22rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  background:rgba(0,0,0,1);
+  opacity:0.4;
+  border-radius:4px;
+}
+/* 旅行社信息 */
+.salesman_box {
+  width: 100%;
+  height: 380rpx;
+  box-sizing: border-box;
+  padding: 30rpx;
+  border-bottom: 20rpx solid #eee;
+}
+.salesman_info{
+  display: inline-block;
+  width: 420rpx;
+  height: 100%;
+  vertical-align: middle;
+}
+.li{
+  display: block;
+  width: 100%;
+  height: 60rpx;
+
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(26,26,26,1);
+  line-height:60rpx;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.play_btn {
+  cursor: pointer;
+  color: #3E8DFE;
+}
+
+/* 二维码 */
+.salesman_qr {
+  display: inline-block;
+  height: 100%;
+  width: 260rpx;
+  vertical-align: middle;
+  box-sizing: border-box;
+  /* padding-top: 46rpx; */
+  padding-left: 10rpx;
+
+
+}
+.qr_img {
+  display: block;
+  height: 248rpx;
+  width: 248rpx;
+  overflow: hidden;
+  margin-top: 22rpx;
+
+}
+.qr_name {
+  display: inline-block;
+  width: 100%;
+  height: 60rpx;
+  font-size:22rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(102,102,102,1);
+  line-height:60rpx;
+  text-align: center;
+}
+/* 行程信息 */
+.treval_info {
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  padding: 30rpx;
+}
+.treval_name {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 60rpx;
+}
+.treval_title {
+  position: relative;
+  height: 60rpx;
+  width: 100%;
+  text-align: center;
+}
+.title_name {
+  display: inline-block;
+  width: 100%;
+  height: 60rpx;
+  font-size:30rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  color:rgba(26,26,26,1);
+  text-align: center;
+  line-height: 60rpx;
+  margin-bottom: 10rpx;
+}
+.title_name.name_cur{
+  text-align: left;
+}
+.browse_times {
+  /* position: absolute;
+  top:0;
+  right: 0; */
+  width: 100%;
+
+  font-size:22rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(102,102,102,1);
+  line-height:60rpx;
+  box-sizing: border-box;
+  padding-left: 30rpx;
+
+}
+.treval_days {
+  width: 100%;
+  height: 60rpx;
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(26,26,26,1);
+  line-height:60rpx;
+}
+.treval_price {
+  width: 100%;
+  height: 60rpx;
+
+}
+.price {
+  height: 60rpx;
+  width: auto;
+  font-size:36rpx;
+  font-family:PingFang SC;
+  font-weight:800;
+  color:rgba(255,107,1,1);
+  line-height:60rpx;
+}
+.price.left{
+  float: left;
+}
+.price.right{
+  float: right;
+}
+.treval_special, .treval_detail {
+  margin-bottom: 20rpx;
+}
+.treval_special {
+  width: 100%;
+  height: auto;
+}
+.treval_detail {
+  width: 100%;
+  height: auto;
+  /* overflow: hidden; */
+}
+.rich_box {
+  width: 100%;
+  height: auto;
+}
+.rich_img {
+  display: block;
+  width: 100%;
+  height: 960rpx;
+  margin-bottom: 5rpx;
+}
+.treval_detail_btn {
+   width:600rpx;
+    height:86rpx;
+    background:linear-gradient(100deg,rgba(150,94,254,1) 0%,rgba(62,141,254,1) 100%);
+    box-shadow:0px 2rpx 16px 0px rgba(107,117,254,1);
+    border-radius:43rpx;
+    line-height: 86rpx;
+    text-align: center;
+    font-size:32rpx;
+    font-family:PingFang SC;
+    font-weight:bold;
+    color:rgba(255,255,255,1);
+    margin: 30rpx auto;
+    cursor: pointer;
+}
+.special_img {
+  display: block;
+  width: 100%;
+  height: 365rpx;
+  /* height: 100%; */
+  border-radius:6rpx 0px 0px 0px;
+}
+.swiper_img {
+  display: block;
+  width: 100%;
+  height: 365rpx;
+  /* height: 100%; */
+  border-radius:6rpx 0px 0px 0px;
+}
+
+.con{
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(26,26,26,1);
+  line-height:60rpx;
+}
+.rich_text{
+  width: 100%;
+  height: auto;
+  /* overflow: hidden; */
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(26,26,26,1);
+  line-height:60rpx;
+}
+rich-text .rich-img {
+  width: 100% ;
+  height: auto ;
+}
+/* 分享 */
+.qr_box {
+  position: fixed;
+  bottom: 120rpx;
+  right: 30rpx;
+  width:120rpx;
+  height:120rpx;
+  background:linear-gradient(0deg,rgba(110,115,254,1) 0%,rgba(62,141,254,1) 100%);
+  box-shadow:0px 0px 49rpx 5rpx rgba(64,140,254,0.48);
+  border-radius:60rpx;
+}
+.qr_img2 {
+  display: block;
+  width: 54rpx;
+  height: 54rpx;
+  margin-top:33rpx; 
+  margin-left:33rpx; 
+}
+.share_btn {
+  position: absolute;
+  top:0;
+  left: 0;
+  width:120rpx;
+  height:120rpx;
+  text-align: center; 
+  z-index: -1;
+  background:linear-gradient(0deg,rgba(110,115,254,1) 0%,rgba(62,141,254,1) 100%);
+  box-shadow:0px 0px 49rpx 5rpx rgba(64,140,254,0.48);
+  border-radius:60rpx;
+  padding: 0;
+}
+
+/* 二维码弹窗 */
+.qr_ifram {
+  width:690rpx;
+  height:850rpx;
+  background:rgba(255,255,255,1);
+  border-radius:6rpx;
+  
+}
+.ifram_box {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  padding-top:150rpx;
+}
+.ifram_img {
+  display: block;
+  width: 303rpx;
+  height: 303rpx;
+  margin: 0 auto;
+}
+.qr_tip1 {
+  width: 100%;
+  height:60rpx;
+  font-size:32rpx;
+  font-family:PingFang SC;
+  font-weight:500;
+  color:rgba(51,51,51,1);
+  line-height: 60rpx;
+  text-align: center;
+  margin-top: 16rpx;
+}
+.qr_tip2 {
+  width: 100%;
+  height:60rpx;
+  font-size:26rpx;
+  font-family:PingFang SC;
+  font-weight:500;
+  color:rgba(153,153,153,1);
+  line-height: 60rpx;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+.qr_btn {
+  width:258rpx;
+  height:88rpx;
+  background:linear-gradient(100deg,rgba(150,94,254,1) 0%,rgba(62,141,254,1) 100%);
+  border-radius:44rpx;
+  font-size:36rpx;
+  font-family:PingFang SC;
+  font-weight:500;
+  color:rgba(255,255,255,1);
+  line-height: 88rpx;
+  text-align: center;
+  margin: 0 auto;
+}
+.suport {
+  width: 100%;
+  height: 60rpx;
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(26,26,26,1);
+  line-height:60rpx;
+  text-align: center;
+  margin-bottom: 50rpx;
+}
+.login_type {
+  width:360rpx;
+  height:90rpx;
+  
+  border-radius:45rpx;
+  font-size:32rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  color:rgba(255,255,255,1);
+  text-align: center;
+  line-height: 90rpx;
+  margin-bottom: 60rpx;
+}
+.sale {
+  background:linear-gradient(7deg,rgba(253,183,25,1) 0%,rgba(255,212,21,1) 100%);
+  box-shadow:0px 2px 16px 0px rgba(253,184,25,1);
+}
+.trale{
+  background:linear-gradient(0deg,rgba(59,143,254,1) 0%,rgba(145,96,254,1) 100%);
+  box-shadow:0px 2px 16px 0px rgba(107,117,254,1);
+}
+.vistor {
+  background:linear-gradient(0deg,rgba(253,117,117,1) 0%,rgba(254,53,54,1) 100%);
+  box-shadow:0px 2px 16px 0px rgba(253,98,99,1);
+}

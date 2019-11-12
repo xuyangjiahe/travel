@@ -1,0 +1,58 @@
+<!--pages/itinerary/itinerary.wxml-->
+<!-- 行程线路 -->
+<view class="top_fiexd">
+  <view style="width:100%;height:{{statusBarHeight}}px;background-color:#fff;" class="top_bar"></view>
+  <view class="status-bar"> 
+  <!-- wx:if="{{isShareOpen == '3'}}" -->
+      <view class="title_name"><image class="login_out_btn" wx:if="{{isScanCodeQr != '2' || isShareOpen != '2'}}" bindtap="getBackIndePage"  src="../../images/fanhui.png" ></image><image class="back_home" bindtap="getBacHhome"  src="../../images/home-icon.png"></image><view class="title_name_1">{{title}}</view></view>
+      <!-- <view class="login_bg" bindtap="getBackIndePage" ></view> -->
+  </view>
+</view>
+
+<view class="itinerary">
+
+  <view class="itinerary_lists">
+    <view class="itinerary_li" wx:for="{{newList}}" wx:key="{{item.rid}}" data-lineid="{{item.rid}}" bindtap="toLineDetail">
+      <image class="li_img" src="{{item.image1}}"></image>
+      <view class="li_right">
+        <text class="itinerary_name">{{item.name}}</text>
+        <text class="itinerary_info">{{item.introduce}}</text>
+        <text class="itinerary_num">阅读量：{{item.readnum}}</text>
+      </view>
+    </view>
+    
+  </view>
+  
+  <view class="qr_box" bindtap="showPopupQr" wx:if="{{userType == '1' && isScanCodeQr !='2' && isShareOpen != '2'}}">
+  <!-- 只有旅行社才能生成线路二维码 -->
+    <image class="qr_img" src="../../images/qr_f.png"></image>
+  </view>
+  <van-popup show="{{ showQr }}" bind:close="onCloseQr">
+    <view class="qr_ifram">
+    <!-- 二维码弹窗 -->
+      <view class="ifram_box">
+        <image class="ifram_img" src="{{qrURLSave}}"></image>
+        <!-- <canvas class="ifram_img" canvas-id="myQrcode" style="background:#fff;width: 200px;height: 200px;"/> -->
+        <!-- <canvas class="ifram_img" canvas-id="myQrcode" /> -->
+        <view class="qr_tip1">点击保存二维码</view>
+        <view class="qr_tip2">保存至您的手机去分享</view>
+        <!-- <view class="qr_btn" bindtap="saveQrCode" bindlongtap="saveQrCode">保存</view> -->
+        <button class="qr_btn"   open-type="getUserInfo" bindgetuserinfo="saveQrCode">保存</button>
+      </view>
+    </view>
+    
+  </van-popup>
+
+  <!-- <van-popup show="{{ show }}"  overlay-style="background-color: rgba(255,255,255,0.7);height:100%;width: 100%;" custom-style="background-color: rgba(255,255,255,0);"> -->
+  <van-popup show="{{ show }}"  overlay-style="background-color: rgba(255,255,255,0.7);height:100%;width: 100%;" custom-style="background-color: rgba(255,255,255,0);">
+    <!-- <view class="popup_bg" bindtap="onClose"> -->
+    <view class="popup_bg" >
+      <!-- <view class="login_type sale" catchtap="saleLogin" >销售员登录</view> -->
+      <button class="login_type sale"  open-type="getUserInfo" bindgetuserinfo="saleLogin">销售员登录</button>
+      <!-- <view class="login_type trale" catchtap="agencyLogin">旅行社登录</view> -->
+      <!-- <view class="login_type vistor" catchtap="travelLogin" open-type="getUserInfo">游客登录</view> -->
+      <button class="login_type vistor"   open-type="getUserInfo" bindgetuserinfo="travelLogin">游客登录</button>
+    </view>
+    
+  </van-popup>
+</view>

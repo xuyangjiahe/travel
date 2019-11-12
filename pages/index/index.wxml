@@ -1,0 +1,47 @@
+<!--index.wxml-->
+<view class="container">
+<view style="width:100%;height:{{statusBarHeight}}px"></view>
+<view class="status-bar">
+  <!-- <image bindtap="getBackIndePage" class="login_out_btn" src="../../images/login-out-icon.png" ></image> -->
+  <!-- <navigator class="login_bg" target="miniProgram" open-type="exit"></navigator> -->
+  <!-- <view class="login_bg" bindtap="getBackIndePage" ></view> -->
+</view>
+  <view class="home">
+    <view class="image_box">
+      <image class="top_img" src="../../images/home-bg.png"></image>
+    </view>
+    <view class="swiper-contain">
+      <swiper indicator-dots="{{indicatorDots}}"
+        autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <swiper-item wx:for="{{swiper}}" wx:key="{{item}}" bindtap="goContent" data-url="{{item}}">
+        <image src="{{item}}"></image>
+        </swiper-item>
+      </swiper>
+    </view>
+    
+    <view class="home_bottom">
+      <view class="list_box">
+      
+        <view class="list" wx:for="{{homeLists}}" wx:key="{{item}}">
+          <image class="list_img" src="{{item.image}}"></image>
+          <text class="list_name">{{item.name}}</text>
+        </view>
+      </view>
+      <!-- <view >打开文档</view> -->
+      <view class="btn_box">
+        <view class="login_btn" is-link bindtap="showPopup">登录</view>
+        <!-- <view class="login_btn" is-link bindtap="openWordFun">打开文档</view> -->
+      </view>
+    </view>
+  </view>
+  <van-popup show="{{ show }}" bind:close="onClose" overlay-style="background-color: rgba(255,255,255,0.7);height:100%;width: 100%;" custom-style="background-color: rgba(255,255,255,0);">
+    <view class="popup_bg" bindtap="onClose">
+      <!-- <view class="login_type sale" catchtap="saleLogin" >销售员登录</view> -->
+      <button class="login_type sale"  open-type="getUserInfo" bindgetuserinfo="saleLogin">销售员登录</button>
+      <view class="login_type trale" catchtap="agencyLogin">旅行社登录</view>
+      <!-- <view class="login_type vistor" catchtap="travelLogin" open-type="getUserInfo">游客登录</view> -->
+      <button class="login_type vistor"   open-type="getUserInfo" bindgetuserinfo="travelLogin">游客登录</button>
+    </view>
+    
+  </van-popup>
+</view>

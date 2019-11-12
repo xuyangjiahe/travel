@@ -1,0 +1,26 @@
+<!--pages/completeInfo.wxml 旅行社资料完善页面-->
+<view style="width:100%;height:{{statusBarHeight}}px;background-color:#fff;" class="top_bar"></view>
+  <view class="status-bar">
+    <view class="title_name">
+      <!-- <image class="login_out_btn" bindtap="getBackIndePage"  src="../../images/fanhui.png" ></image> -->
+      <image class="back_home" bindtap="getBacHhome"  src="../../images/home-icon.png"></image>
+      <view class="title_name_1">{{title}}</view>
+    </view>
+  </view>
+<view class="complete">
+  <view class="top">
+    <image class="travel_icon" src="{{travelImg}}"></image><text class="travel_name">{{travelName}}</text>
+  </view>
+  <view class="info_box">
+    <view class="info_title">完善信息</view>
+    <view class="list"><text class="list_title">负责人</text><input class="inp" placeholder='请输入负责人姓名' bindinput="getname" value="{{name}}"></input></view>
+    <view class="list"><text class="list_title">地址</text><input class="inp" placeholder='请输入地址信息' bindinput="getaddress" value="{{address}}"></input></view>
+    <view class="list"><text class="list_title">选择省份</text><view class="inp" bindtap="showPopup" >{{areaName}}<image class="next-icon"  src="../../images/next-icon.png"></image></view></view>
+    <view class="list"><text class="list_title">更改密码</text><input class="inp" placeholder='请更该登录密码' type="password" bindinput="getpassword" value="{{password}}"></input></view>
+    <view class="list"><text class="list_title">确认密码</text><input class="inp" placeholder='请再输入一次密码' type="password" bindinput="getconfirmpassword" value="{{confirmpassword}}"></input></view>
+  </view>
+  <button bindtap="submitBtn">提交</button>
+  <van-popup show="{{ show }}" position="bottom" bind:close="onClose">
+    <van-area area-list="{{ areaList }}" columns-num="{{ 1 }}" title="省份" bind:confirm="onConfirm" bind:cancel="onCancel" bind:change="onChange"/>
+  </van-popup>
+</view>

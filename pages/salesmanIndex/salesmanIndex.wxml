@@ -1,0 +1,46 @@
+<!--pages/salesmanIndex/salesmanIndex.wxml-->
+<!--销售员首页-->
+<view class="container">
+<view style="width:100%;height:{{statusBarHeight}}px"></view>
+<view class="status-bar">
+  <image bindtap="getBackIndePage" class="login_out_btn" src="../../images/login-out-icon.png" ></image>
+  <!-- <navigator class="login_bg" target="miniProgram" open-type="exit"></navigator> -->
+  <view class="login_bg" bindtap="getBackIndePage" ></view>
+</view>
+  <view class="home">
+    <view class="image_box">
+      <image class="top_img" src="../../images/home-bg.png"></image>
+    </view>
+    <view class="swiper-contain">
+      <swiper indicator-dots="{{indicatorDots}}"
+        autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <swiper-item wx:for="{{swiper}}" wx:key="{{item}}" bindtap="goContent" data-url="{{item}}">
+        <image src="{{item}}"></image>
+        </swiper-item>
+      </swiper>
+    </view>
+    <view class="home_bottom">
+      <view class="list_box">
+        <view class="list" wx:for="{{homeLists}}" wx:key="{{item}}" bindtap="toSeeLine">
+          <image class="list_img" src="{{item.image}}"></image>
+          <text class="list_name">{{item.name}}</text>
+        </view>
+      </view>
+      <!-- <view class="btn_box">
+        <view class="login_btn" is-link bindtap="showPopup">登录</view>
+      </view> -->
+    </view>
+  </view>
+  <view class="qr_box" wx:if="{{userType == '2'}}">
+  <!-- 只有旅行社才能生成线路二维码 -->
+  <!-- 销售员此页面改按钮是干什么用的 -->
+    <image class="qr_img" bindtap="touchBtn" src="../../images/saoma.png"></image>
+  </view>
+  <view class="vister_qr_box" bindtap="touchBtn" wx:if="{{userType == '3'}}">
+  <!-- 只有旅行社才能生成线路二维码 -->
+  <!-- 销售员此页面改按钮是干什么用的 -->
+    <!-- <image class="vister_qr_img" bindtap="touchBtn" src="../../images/saoma.png"></image> -->
+    领券
+  </view>
+</view>
+

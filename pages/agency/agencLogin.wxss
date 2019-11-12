@@ -1,0 +1,87 @@
+/* pages/agencLogin.wxss */
+page{
+  height: 100%;
+  box-sizing: border-box;
+}
+.agency_login {
+  position: relative;
+  width: 750rpx;
+  height: 100%;
+  background-color: #3B8FFE;
+  box-sizing: border-box;
+}
+.agency_main {
+  height: 100%;
+  padding-top: 100rpx;
+  box-sizing: border-box;
+}
+.logo_img {
+  display: block;
+  width: 433rpx;
+  height: 140rpx;
+  margin: 0 auto;
+}
+.login_box {
+  position: absolute;
+  top:350rpx;
+  right: -6rpx;
+  width: 720rpx;
+  height: 505rpx;
+}
+.login_bg {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.list {
+  position: absolute;
+  top:0;
+  right: -6rpx;
+  width: 750rpx;
+  height: 505rpx;
+}
+.login_list {
+  width: 480rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: 1rpx solid #CECECE;
+  margin-top: 30rpx;
+  margin-left: 165rpx;
+}
+.last_li {
+  margin-bottom: 98rpx;
+}
+.icon{
+  display: inline-block;
+  width:36rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  margin-right:30rpx;
+}
+.inp {
+  display: inline-block;
+  width: 410rpx;
+  height: 100%;
+  line-height: 100%;
+  vertical-align: middle;
+  font-size: 32rpx;
+}
+.inpt.inp_password{
+  font-size: 16rpx;
+}
+input::placeholder{
+  color:#999999;
+}
+button {
+  width:320rpx;
+  height:86rpx;
+  background:linear-gradient(100deg,rgba(150,94,254,1) 0%,rgba(62,141,254,1) 100%);
+  box-shadow:0px 2rpx 16rpx 0px rgba(107,117,254,0.52);
+  border-radius:43rpx;
+  line-height: 86rpx;
+  font-size:36rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  margin: 0 auto;
+}

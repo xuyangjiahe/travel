@@ -1,0 +1,75 @@
+<!--pages/orderDetail/orderDetail.wxml 确认件详情-->
+<view class="order_detail">
+  <view class="agency_name">{{orderInfo.tname}}</view>
+  <view class="order_main">
+    <view class="li1">
+      <text class="text1">行程名称</text><text class="text2">{{orderInfo.name}}</text><text class="text1 text11">团号</text><text class="text2">{{orderInfo.groupnum}}</text><text class="text1 text11">出团</text><text class="text2">{{orderInfo.outgroup}}</text><text class="text1 text11">回团</text><text class="text2 last">{{orderInfo.ingroup}}</text>
+    </view>
+    <view class="li1">
+      <text class="text1">收件社</text><text class="text2">{{orderInfo.receipts}}</text><text class="text1 text11">姓名</text><text class="text2">{{orderInfo.receiptsname}}</text><text class="text1 text11">电话</text><text class="text2">{{orderInfo.receiptsphone}}</text><text class="text1 text11">传真</text><text class="text2 last">{{orderInfo.receiptsfax}}</text>
+    </view>
+    <view class="li1">
+      <text class="text1">发件社</text><text class="text2">{{orderInfo.hairparts}}</text><text class="text1 text11">姓名</text><text class="text2">{{orderInfo.hairpartsname}}</text><text class="text1 text11">电话</text><text class="text2">{{orderInfo.hairpartsphone}}</text><text class="text1 text11">传真</text><text class="text2 last">{{orderInfo.hairpartsfax}}</text>
+    </view>
+    <view class="remarks">
+      <text class="remarks_title">备注</text>
+      <text class="remarks_detal">1、本确认件经双方确认签章即视为委托合同生效，对双方具有约束力，双方应严格履行本通知书的各项条款。本确认件一经确认，具有法律效力。\n2、团期一经确认将不能取消（我司以确认账单回传及订金到账确保留位）；否则不予退还订金。\n3、特殊年龄收费以行程中所列价格明细为准。\n4、请提醒参团游客,证件需在有效期内（护照有效期必须在 6 个月以上(从团队回程日期算起 ,保证三张以上空白页），否则造成的一切损失请游客自行承担;\n5、出团前 5 个工作日付清全款(旺季另议),否则所产生的损失由贵社承担。\n6、此团为散拼团,订金为团队预付款,团队成行即计入团费总额;如出票后客人自动放弃,全款不退;如客人中途提出无法成行的,订金不退,请贵社及时告知游客。\n7、团队因天气、地震、战争、航班延误等人力不可抗拒因素,导致团队无法正常出发或继续后面行程,所产生的任何费用损失我司不予承担,我司有权调整行程或推迟出团计划。\n8、如果因个人原因不能如期出行（出境团个人原因被海关拒绝入境）,责任由游客自行承担,我公司不承担任何责任。</text>
+    </view>
+    <view class="bill padLeft30">
+      账单明细
+    </view>
+    <view class="li2">
+      <text class="li2_text order_num">订单号</text><text class="li2_text order_outline">订单摘要</text><text class="li2_text people_num">人数</text><text class="li2_text order_price">单价</text><text class="li2_text total_price borderRightNone">人民币总额</text>
+    </view>
+    <view class="li2">
+      <text class="li2_text order_num">{{orderInfo.ordernum}}</text><text class="li2_text order_outline">{{orderInfo.abstracts}}</text><text class="li2_text people_num">{{orderInfo.membernum}}</text><text class="li2_text order_price">{{orderInfo.unitprice}}</text><text class="li2_text total_price borderRightNone">{{orderInfo.allmoney}}</text>
+    </view>
+    <view class="li2">
+      <text class="li2_text order_num">合计</text><text class="li2_text total_num">大写（{{orderInfo.ge}}元整）</text><text class="li2_text total_price borderRightNone">小写:{{orderInfo.xiaoxie}}</text>
+    </view>
+    <view class="li2">
+      <text class="li2_text order_num">已收款</text><text class="li2_text unreceived">{{orderInfo.receivables}}</text><text class="li2_text order_price">未收款</text><text class="li2_text total_price borderRightNone">{{orderInfo.notreceivables}}</text>
+    </view>
+    <view class="tip padLeft30">
+      烦请认真核对结算单，如果无误，请盖章、签字回传；团款可汇至我司以下账户，感谢您的支持！
+    </view>
+    <view class="li3">
+      <text class="li3_text account">账户名称</text><text class="li3_text account_name">姓名</text><text class="li3_text account_address">开户行</text><text class="li3_text account_num borderRightNone">账号</text>
+    </view>
+    <view class="li3">
+      <text class="li3_text account">{{orderInfo.account1}}</text><text class="li3_text account_name">{{orderInfo.name1}}</text><text class="li3_text account_address">{{orderInfo.bankname1}}</text><text class="li3_text account_num borderRightNone">{{orderInfo.accountnumber1}}</text>
+    </view>
+    <view class="li3">
+      <text class="li3_text account">{{orderInfo.account2}}</text><text class="li3_text account_name">{{orderInfo.name2}}</text><text class="li3_text account_address">{{orderInfo.bankname2}}</text><text class="li3_text account_num borderRightNone">{{orderInfo.accountnumber2}}</text>
+    </view>
+    <!-- <view class="li3">
+      <text class="li3_text account">账户名称</text><text class="li3_text account_name">姓名</text><text class="li3_text account_address">开户行</text><text class="li3_text account_num borderRightNone">账号</text>
+    </view> -->
+    <view class="li3">
+      <text class="li3_text account">支付宝</text><text class="li3_text apliy_wd">{{orderInfo.zhifubao}}</text><text class="li3_text account_num borderRightNone">{{orderInfo.zhifubao}}</text>
+    </view>
+    <view class="bill padLeft30">
+      行程内容概要
+    </view>
+    <view class="tip">
+      行程名称：{{orderInfo.tripname}}
+    </view>
+    <view class="line_detail">
+      <view class="line_title">行程概况</view>
+      <view class="line_info">
+        {{orderInfo.tripdesc}}
+      </view>
+    </view>
+  </view>
+  <view class="bottom_info">
+    <view class="info_left">
+      <view class="send_name">发件人：{{orderInfo.sendmember}}</view>
+      <view class="send_name">日期：{{orderInfo.sendtime}}</view>
+    </view>
+    <view class="info_right">
+      <view class="send_name">收件人：{{orderInfo.receiptmember}}</view>
+      <view class="send_name">日期：{{orderInfo.receipttime}}</view>
+    </view>
+  </view>
+  <view class="sub_btn" bindtap="confirmOrder" >核销</view>
+</view>

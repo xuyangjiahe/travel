@@ -1,0 +1,33 @@
+{
+  "pages": [
+    
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/completeInfo/completeInfo",
+    "pages/travelIntro/travelIntro",
+    "pages/orderDetail/orderDetail",
+    "pages/agency/agencLogin",
+    "pages/travelHome/travelHome",
+    "pages/routerList/itinerary",
+    "pages/confirmList/travelList",
+    "pages/routeDetail/routeDetail",
+    "pages/salesmanInfo/salesmanInfo",
+    "pages/salesmanIndex/salesmanIndex",
+    "pages/discountCoupon/discountCoupon",
+    "pages/visterInfo/visterInfo",
+    "pages/outPage/outPage",
+    "pages/orderDetailShare/orderDetailShare"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#3B8FFE",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "white"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

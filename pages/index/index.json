@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "van-popup": "/path/vant-weapp/dist/popup/index",
+    "van-cell": "/path/vant-weapp/dist/cell/index"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#3B8FFE",
+  "navigationBarTitleText": "首页",
+  "navigationBarTextStyle": "white",
+  "navigationStyle": "custom"
+}

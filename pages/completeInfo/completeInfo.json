@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "van-popup": "/path/vant-weapp/dist/popup/index",
+    "van-area": "/path/vant-weapp/dist/area/index"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTitleText": "旅行社认证",
+  "navigationBarTextStyle": "black",
+  "navigationStyle": "custom"
+}

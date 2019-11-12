@@ -1,0 +1,14 @@
+{
+  "usingComponents": {
+    "van-popup": "/path/vant-weapp/dist/popup/index",
+    "van-cell": "/path/vant-weapp/dist/cell/index"
+  },
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50,
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTitleText": "行程路线",
+  "navigationBarTextStyle": "black",
+  "navigationStyle": "custom"
+  
+}

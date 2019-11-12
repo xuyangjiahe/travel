@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "van-popup": "/path/vant-weapp/dist/popup/index",
+    "van-area": "/path/vant-weapp/dist/area/index",
+    "van-picker": "/path/vant-weapp/dist/picker/index"
+  },
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTitleText": "游客注册登录",
+  "navigationBarTextStyle": "black",
+  "navigationStyle": "custom"
+}

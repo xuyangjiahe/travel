@@ -1,0 +1,167 @@
+/* pages/travelHome/travelHome.wxss */
+.travel_home {
+  height: 100%;
+  width: 100%;
+}
+.top_fiexd {
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 150rpx;
+  background: #3B8FFE;
+}
+.status-bar {
+  width: 100%;
+  height: 96rpx;
+}
+.login_out_btn {
+  position: fixed;
+  top: 50rpx;
+  left: 30rpx;
+  display: block;
+  width: 40rpx;
+  height: 40rpx;
+  margin-left:30rpx;
+  margin-top:28rpx;
+  cursor: pointer;
+  z-index: 99;
+}
+.login_bg {
+  position: fixed;
+  top: 50rpx;
+  left: 30rpx;
+  width: 100rpx;
+  height: 100rpx;
+  text-align: center;
+}
+.travel_top {
+  height: 100%;
+  width: 750rpx;
+  box-sizing: border-box;
+  padding: 30rpx;
+  margin-top: 150rpx;
+}
+.top_bg {
+  position: fixed;
+  top:0;
+  left: 0;
+  z-index: -1;
+  display: block;
+  width: 750rpx;
+  height: 580rpx;
+}
+.travel_info {
+
+}
+.travel_logo{
+  display: inline-block;
+  width:82rpx;
+  height:82rpx;
+  border-radius:6rpx;
+  vertical-align: middle;
+  border: 1rpx solid #fafafa;
+}
+.travel_name {
+  display: inline-block;
+  width:300rpx;
+  height:82rpx;
+  line-height: 82rpx;
+  vertical-align: middle;
+  font-size:36rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  color:rgba(255,255,255,1);
+  margin-left: 30rpx;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.to_see_detail {
+  float:right;
+  height:82rpx;
+  border-radius:6rpx;
+  line-height: 82rpx;
+  font-size:26rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+.travel_instract{
+  width: 100%;
+  height:136rpx;
+  font-size:28rpx;
+  font-family:PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:48rpx;
+  overflow: hidden;
+  margin-top:30rpx;
+}
+
+.home_bottom {
+  width: 750rpx;
+  height:auto;
+  margin-top: 50rpx;
+  background-color: #fff;
+  border-top-left-radius: 50rpx;
+  border-top-right-radius: 50rpx;
+  padding: 70rpx 30rpx 30rpx 30rpx;
+  box-sizing: border-box;
+  
+}
+.list_box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 100rpx;
+}
+.list {
+  width: 335rpx;
+  height: auto;
+  margin-bottom: 30rpx;
+  cursor: pointer;
+}
+.list_img {
+  display: inline-block;
+  width: 335rpx;
+  height: 260rpx;
+  border-radius:8rpx;
+}
+.list_name {
+  display: block;
+  width: 100%;
+  height:70rpx;
+  font-size:32rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  color:rgba(51,51,51,1);
+  line-height:70rpx;
+  text-align: center;
+}
+.btn_box {
+  
+  position: fixed;
+  bottom:0;
+  left: 0;
+  width: 100%;
+  height: 100rpx;
+  background: rgba(255,255,255,0.9);
+}
+.login_btn {
+  width:282rpx;
+  height:86rpx;
+  background:linear-gradient(100deg,rgba(150,94,254,1) 0%,rgba(62,141,254,1) 100%);
+  box-shadow:0px 2rpx 16px 0px rgba(107,117,254,1);
+  border-radius:43rpx;
+  line-height: 86rpx;
+  text-align: center;
+  font-size:32rpx;
+  font-family:PingFang SC;
+  font-weight:bold;
+  color:rgba(255,255,255,1);
+  margin: 7rpx auto;
+  cursor: pointer;
+}
