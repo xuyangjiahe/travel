@@ -59,6 +59,7 @@ Page({
     isScanCodeQr: '',
     switerimgHeight: '',
     playBtn: false, // 播放按钮
+    agencyId:'', // 旅行社id
   },
   showPopupQr: function () {
     let that = this;
@@ -162,6 +163,9 @@ Page({
     wx.redirectTo({
       url: '/pages/routerList/itinerary?typeId=' + that.data.lineTypeId,
     })
+    // wx.navigateBack({
+    //   delta: 0
+    // })
   },
   getBacHhome() {
     
@@ -409,12 +413,20 @@ Page({
   travelLogin(e) {
     // 游客登录
     let that = this;
-    that.setData({
-      userType: '3'
-    })
-    globalInfo.userType = '3';
-    wx.setStorageSync('userType', '3');
-    this.impowerFun('3', e.detail.userInfo);
+    // that.setData({
+    //   userType: '3'
+    // })
+    // globalInfo.userType = '3';
+    // wx.setStorageSync('userType', '3');
+    // this.impowerFun('3', e.detail.userInfo);
+
+    // 2019-12-13游客进入详情页面假授权
+    if (globalInfo.userType == '2') {
+      that.getLineDetail(that.data.lineId, that.data.cityData, that.data.salesmanId);
+    } else {
+      that.getLineDetail(that.data.lineId, that.data.cityData);
+    }
+    that.onClose();
   },
   onClose() {
     // 登录弹窗
@@ -431,6 +443,7 @@ Page({
   onLoad: function (options) {
     console.log('onLoad options:', options);
     let that = this
+    
     // 系统信息的高度
     // salesmanId // 销售员
     // https://lvyou.cxzjzg.com/tourismprogram/api/service1?lineId=efe6534b184a461880acbe72107670a9&isScanCodeQr=2&salesmanId=5b9bb42f238c46da851ad4b70599cd9a&lineTypeId=1&province=河南省&userType=2,
@@ -444,7 +457,10 @@ Page({
      * @param {String} lineTypeId:线路类型id
      * @param {String} userType: 用户类型
     */
-    console.log('optionsoptionsoptionsoptionsoptionsoptions', options)
+    console.log('optionsoptionsoptionsoptionsoptionsoptions', options);
+    console.log('that.data.userType:', that.data.userType);
+    console.log('that.data.userType:', that.data.userType);
+    console.log('that.data.userTypeglobalInfo.userType', globalInfo.userType)
 
     if (options.q !== undefined) {
       // 扫码进入
@@ -525,6 +541,12 @@ Page({
           userType: optionsData.userType
         })
       }
+      // 存储旅行社信息返回键使用
+        that.setData({
+          agencyId: optionsData.agencyId ? optionsData.agencyId : wx.getStorageSync('agencyId')
+        })
+      
+      
       console.log('isShareOpenisShareOpen:', that.data.isShareOpen); // userType
       
       wx.login({
@@ -705,8 +727,17 @@ Page({
     // })
     // 只有页面卸载了，才会才会再次走onload
     // wx.clearStorageSync();
+    let that = this;
     wx.removeStorageSync('lineId')
     console.log('onUnload options', options);
+    // isScanCodeQr != '2' || isShareOpen != '2'
+    // if (that.data.isShareOpen != '2' && that.data.isScanCodeQr != '2') {
+    //   wx.redirectTo({
+    //     url: '/pages/routerList/itinerary?lineTypeId=' + that.data.lineTypeId + '&agencyId=' + that.data.agencyId,
+    //   })
+    // }
+    // wx.navigateBack()
+    
     
     
   },

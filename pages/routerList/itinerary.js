@@ -41,7 +41,8 @@ Page({
     alreayCompleteUrl: '',// 已经完善过信息地址；
     noCompleteUrl: '', // 没有完善信息跳转地址
     scanCodeUrl:'/pages/routerList/itinerary', // 扫二维码跳转地址
-    isScanCodeQr: ''
+    isScanCodeQr: '',
+    salesmanId:'', // 销售员id
   },
   showPopupQr: function () {
     this.setData({ showQr: true });
@@ -63,10 +64,22 @@ Page({
       wx.setStorageSync('isShareOpen', '3');
     }
     
-    wx.setStorageSync('lineId', that.data.lineId)
-    wx.navigateTo({
-      url: '/pages/routeDetail/routeDetail'
-    })
+    wx.setStorageSync('lineId', event.currentTarget.dataset.lineid)
+    // '/pages/routeDetail/routeDetail?lineId=' + that.data.lineId + '&isShareOpen=2&salesmanId=' + that.data.salesmanId + '&lineTypeId=' + that.data.lineTypeId + "&userType=" + that.data.userType
+    console.log('列表查看详情that.data.userType:', that.data.userType);
+    console.log('列表查看详情that.data.salesmanId:', that.data.salesmanId);
+    if (that.data.userType == '2') {
+      // 销售员
+      wx.redirectTo({
+        url: '/pages/routeDetail/routeDetail?salesmanId=' + that.data.salesmanId
+      })
+    } else {
+      // 旅行社
+      wx.redirectTo({
+        url: '/pages/routeDetail/routeDetail'
+      })
+    }
+    
   },
   makeQrCode() {
     let that = this;
@@ -143,7 +156,8 @@ Page({
     // 销售员登录
     let that = this;
     console.log('e', e)
-    
+    // 销售员不能转发
+    // wx.hideShareMenu();
     that.setData({
       userType: '2'
     })
@@ -182,6 +196,17 @@ Page({
                       // wx.removeStorageSync('agencyId');
                       // wx.removeStorageSync('userId');
                       wx.setStorageSync('userId', resverRes.data.uid);
+                      console.log('itinerary that.data.userType1', that.data.userType);
+                      if (that.data.userType == '2') {
+                        console.log('itinerary that.data.userType2', that.data.userType);
+                        that.setData({
+                          salesmanId: resverRes.data.uid
+                        })
+                      } else {
+                        that.setData({
+                          salesmanId: ''
+                        })
+                      }
                       // "iswanshan": "是否完善信息 0未完善 1已完善"
                       if (resverRes.data.iswanshan === '1') {
                         // wx.navigateTo({
@@ -242,12 +267,14 @@ Page({
     // wx.navigateTo({
     //   url: '/pages/visterInfo/visterInfo'
     // })
-    that.setData({
-      userType: '3'
-    })
-    globalInfo.userType = '3';
-    wx.setStorageSync('userType', '3');
-    this.impowerFun('3', e.detail.userInfo);
+    // that.setData({
+    //   userType: '3'
+    // })
+    // globalInfo.userType = '3';
+    // wx.setStorageSync('userType', '3');
+    // this.impowerFun('3', e.detail.userInfo);
+    // 2019-11-13游客假授权
+    that.onClose();
     
   },
   onClose() {
@@ -292,7 +319,7 @@ Page({
      * @params type:线路类型
      * @isScanCodeQr：2:扫码进入；3：不是
      * */ 
-    //  扫码规则
+    //  微信扫码规则
     if (options.q !== undefined) {
       let getScanCodeUrl = decodeURIComponent(options.q);
       console.log('getScanCodeUrl:', getScanCodeUrl);
@@ -319,6 +346,14 @@ Page({
       wx.removeStorageSync('isScanCodeQr')
       if (optionsData.isShareOpen == '2') {
         // 转发进入
+        if (optionsData.userType == '2') {
+          // 销售员
+          that.setData({
+            userType: '2',
+            salesmanId: optionsData.salesmanId
+          })
+          globalInfo.userType = '2'
+        }
         if (wx.getStorageSync('lineTypeId') || optionsData.lineTypeId) {
           that.setData({
             lineTypeId: optionsData.lineTypeId ? optionsData.lineTypeId : wx.getStorageSync('lineTypeId'),
@@ -330,12 +365,16 @@ Page({
         }
 
       } else{
+        console.log('小程序内扫描二维进入');
+        console.log('optionsData:', optionsData);
+        console.log("wx.getStorageSync('userId'):", wx.getStorageSync('userId'));
         if (wx.getStorageSync('lineTypeId') || optionsData.lineTypeId) {
           that.setData({
             lineTypeId: optionsData.lineTypeId ? optionsData.lineTypeId : wx.getStorageSync('lineTypeId'),
             agencyId: optionsData.agencyId ? optionsData.agencyId : wx.getStorageSync('agencyId'),
             isScanCodeQr: '3',
-            isShareOpen: '3'
+            isShareOpen: '3',
+            salesmanId: wx.getStorageSync('userId') ? wx.getStorageSync('userId') :''
           });
         }
       }
@@ -361,7 +400,7 @@ Page({
       userType: globalInfo.userType
     })
     if (that.data.userType == '2') {
-      wx.hideShareMenu()
+      // wx.hideShareMenu()
     }
   },
 
@@ -376,13 +415,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log('itinerary onShow')
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
+    console.log('itinerary onHide')
 
   },
 
@@ -392,6 +432,7 @@ Page({
   onUnload: function () {
     
     let that =this;
+    console.log('itinerary onUnload')
     // if (that.data.userType == '2') {
     //   wx.redirectTo({
     //     url: '/pages/salesmanIndex/salesmanIndex'
@@ -401,6 +442,13 @@ Page({
     //     url: '/pages/travelHome/travelHome',
     //   })
     // }
+    // + that.data.lineTypeId + '&agencyId=' + that.data.agencyId
+    // if (that.data.isShareOpen != '2' && that.data.isScanCodeQr != '2') {
+    //   wx.redirectTo({
+    //     url: '/pages/travelHome/travelHome?agencyId=' + that.data.agencyId,
+    //   })
+    // }
+
 
   },
   getLists(nowPage, refreshType) {
@@ -530,15 +578,22 @@ Page({
 
     console.log(globalInfo.shareBgUrl);
     wx.setStorageSync('isShareOpen', '2');
+    let shareUrl;
+    console.log('列表转发that.data.userType：', that.data.userType);
+    if (that.data.userType == '2') {
+      shareUrl = '/pages/routerList/itinerary?lineTypeId=' + that.data.lineTypeId + '&agencyId=' + that.data.agencyId + '&isShareOpen=2&salesmanId=' + that.data.salesmanId + '&userType=2'
+    } else {
+      shareUrl = '/pages/routerList/itinerary?lineTypeId=' + that.data.lineTypeId + '&agencyId=' + that.data.agencyId + '&isShareOpen=2'
+    }
+    console.log('shareUrlshareUrlshareUrl:', shareUrl);
     return {
       title: that.data.title, // pages/routeDetail/routeDetail
-      path: '/pages/routerList/itinerary?lineTypeId=' + that.data.lineTypeId + '&agencyId=' + that.data.agencyId + '&isShareOpen=2',  // 路径，传递参数到指定页面。
+      path: shareUrl,  // 路径，传递参数到指定页面。
       imageUrl: globalInfo.shareBgUrl, // 分享的封面图
       success: (res) => {
         // 转发成功
         // console.log("转发成功:" + JSON.stringify(res));
         // wx.setStorageSync('isShareOpen', '2');
-
       },
       fail: function (res) {
         // 转发失败
