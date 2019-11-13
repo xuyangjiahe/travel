@@ -442,6 +442,7 @@ Page({
    */
   onLoad: function (options) {
     console.log('onLoad options:', options);
+    
     let that = this
     
     // 系统信息的高度
@@ -700,7 +701,7 @@ Page({
    */
   onShow: function (options) {
     console.log('onShow options:', options);
-    
+    console.log('onShow  getCurrentPages', getCurrentPages());
   },
 
   /**
@@ -711,9 +712,11 @@ Page({
     let that = this;
     if (that.data.isScanCodeQr == '2' || that.data.isShareOpen == '2') {
       wx.clearStorageSync();
-      this.onUnload();
+      // this.onUnload();
+      wx.removeStorageSync('lineId')
     } else {
-      this.onUnload();
+      wx.removeStorageSync('lineId')
+      // this.onUnload();
     }
     
   },
@@ -730,13 +733,16 @@ Page({
     let that = this;
     wx.removeStorageSync('lineId')
     console.log('onUnload options', options);
+    console.log('onUnload getCurrentPages', getCurrentPages());
     // isScanCodeQr != '2' || isShareOpen != '2'
-    // if (that.data.isShareOpen != '2' && that.data.isScanCodeQr != '2') {
-    //   wx.redirectTo({
-    //     url: '/pages/routerList/itinerary?lineTypeId=' + that.data.lineTypeId + '&agencyId=' + that.data.agencyId,
-    //   })
-    // }
-    // wx.navigateBack()
+    if (that.data.isShareOpen != '2' && that.data.isScanCodeQr != '2') {
+      wx.redirectTo({
+        url: '/pages/routerList/itinerary?lineTypeId=' + that.data.lineTypeId + '&agencyId=' + that.data.agencyId,
+      })
+    }
+    // wx.navigateBack({
+    //   delta: 1
+    // })
     
     
     

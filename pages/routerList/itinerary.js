@@ -70,12 +70,12 @@ Page({
     console.log('列表查看详情that.data.salesmanId:', that.data.salesmanId);
     if (that.data.userType == '2') {
       // 销售员
-      wx.redirectTo({
+      wx.navigateTo({
         url: '/pages/routeDetail/routeDetail?salesmanId=' + that.data.salesmanId
       })
     } else {
       // 旅行社
-      wx.redirectTo({
+      wx.navigateTo({
         url: '/pages/routeDetail/routeDetail'
       })
     }
@@ -416,6 +416,7 @@ Page({
    */
   onShow: function () {
     console.log('itinerary onShow')
+    // this.getLists('1', '1');
   },
 
   /**
