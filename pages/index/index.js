@@ -82,7 +82,7 @@ Page({
                       that.setData({
                         isCompleteInfo: resverRes.data.iswanshan
                       })
-                      if (resverRes.data.iswanshan === '1') {
+                      if (resverRes.data.iswanshan == '1') {
                         wx.redirectTo({
                           url: that.data.alreayCompleteUrl,
                         })

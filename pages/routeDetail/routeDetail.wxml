@@ -23,7 +23,7 @@
   <!-- https://ceshi.cxzjzg.com/painting/video/20191014163938ok13.mp4  书画 -->
   <!-- https://lvyou.cxzjzg.com/tourismprogram/userfiles/1/files/videos/videos/2019/11/O1OKxuLuZNgA.mp4 小程序-->
     <view class="video_box" >
-    <video class="video_img"  id="myVideo" src="{{videoUrl}}"  enable-danmu="false" danmu-btn="false"  autoplay="{{true}}"  controls='{{false}}' enable-play-gesture='false' show-center-play-btn='false' bindended="playVideoEnd"></video>
+    <video class="video_img"  id="myVideo" src="{{videoUrl}}"  enable-danmu="false" danmu-btn="false"  autoplay="{{true}}"  controls='{{false}}' enable-play-gesture='false' show-center-play-btn='false' bindended="playVideoEnd" show-fullscreen-btn></video>
       <!-- <video class="video_img"  id="myVideo" src="https://ceshi.cxzjzg.com/painting/video/20191014163938ok13.mp4"  enable-danmu="false" danmu-btn="false"  autoplay="{{true}}"  controls='{{false}}' enable-play-gesture='false' show-center-play-btn='false' bindended="playVideoEnd"></video> -->
       <text class="play_times">播放量：{{playTimes}}</text>
       <cover-image class="video_play_btn" src="../../images/play-btn.png" bindtap="playVideoAgain" wx:if="{{playBtn}}"></cover-image>

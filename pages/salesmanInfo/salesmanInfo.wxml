@@ -8,7 +8,7 @@
     </view>
   </view>
 <view class="salesman">
-  <view class="page_tip">首次登陆需填写您的个人信息</view>
+  <view class="page_tip">首次登录需填写您的个人信息</view>
   <view class="list">
     <view class="li"><text class="li_name">旅行社名称</text><input class="inp" placeholder="请输入" type="text" bindinput="gettravelname" value="{{travelname}}"></input></view>
     <view class="li"><text class="li_name">省份选择</text><view class="inp" bindtap="showPopup" >{{areaName}}<image class="next-icon"  src="../../images/next-icon.png"></image></view></view>
@@ -25,7 +25,7 @@
         <image class="img" src="{{baseUrl}}{{qrcode}}" wx:else></image>
       </view>
     </view>
-    <text class="qr_right">成为本站销售需接受本站会员游客\n持站内抵扣卷抵扣相应的团费：\n 1、国内长线抵扣50元/人团费 \n 2、出境线抵扣100元/人团费 \n 3、抵扣卷仅限每人每次使用一张 \n 4、特价团及汽车团不参与此抵扣 \n 5、解释权归报名旅行社所有 \n</text>
+    <text class="qr_right">成为本站销售需接受本站会员游客\n持站内抵扣券抵扣相应的团费：\n 1、国内长线抵扣50元/人团费 \n 2、出境线抵扣100元/人团费 \n 3、抵扣券仅限每人每次使用一张 \n 4、特价团及汽车团不参与此抵扣 \n 5、解释权归报名旅行社所有 \n</text>
     
   </view>
   <view class="btn_submit" bindtap="sunmitBtn">提交</view>
