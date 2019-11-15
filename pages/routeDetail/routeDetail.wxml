@@ -78,7 +78,7 @@
 
       <view class="rich_text" wx:if="{{richTextType === '2'}}">
         <view  class="rich_box" wx:for="{{richImgLists}}"  wx:key="key">
-          <image class="rich_img" src="{{item}}" bindload="imageLoad" style="height:{{switerimgHeight}}rpx" mode="widthFix" bindtap='previewImg' data-effect_pic='{{richImgLists}}'  data-src='{{item}}' id="{{index}}"></image>
+          <image class="rich_img" src="{{item}}" bindload="imageLoad" style="height:{{switerimgHeight}}rpx" mode="widthFix" bindtap='previewImg' data-effect_pic='{{richImgLists}}' lazy-load="true" data-src='{{item}}' id="{{index}}"></image>
         </view>
         
       </view>
@@ -114,7 +114,7 @@
     <view class="treval_special">
       <view class="title_name name_cur">温馨提示</view>
       <view class="con">{{lineInfo.reminder}}</view>
-      <image class="special_img" src="{{lineInfo.image2}}" mode='scaleToFill'></image>
+      <image class="special_img" src="{{lineInfo.image2}}" mode='scaleToFill' lazy-load="true"></image>
     </view>
   </view>
   <!-- userType:{{userType}}

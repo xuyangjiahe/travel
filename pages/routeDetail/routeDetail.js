@@ -139,6 +139,8 @@ Page({
         //   })
         //   console.log('videoUrl: ', that.data.videoUrl);
         // }, 500)
+        // 隐藏遮罩层
+        wx.hideLoading();
       } else {
         wx.showToast({
           title: res.data.resultNote,
@@ -498,6 +500,10 @@ Page({
       
     } else {
       // 非扫普通二维码进入
+      wx.showLoading({
+        title: '加载中',
+        mask: true,
+      })
       var optionsData = options;
       console.log('非扫普通二维码进入optionsData:', optionsData);
       if (wx.getStorageSync('isShareOpen') == '2' || optionsData.isShareOpen == '2') {

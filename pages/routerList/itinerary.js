@@ -341,6 +341,10 @@ Page({
 
       console.log('微信扫描进入isScanCodeQr 1:', that.data.isScanCodeQr);
     } else {
+      wx.showLoading({
+        title: '加载中',
+        mask: true,
+      })
       let optionsData = options;
       console.log('optionsData:', optionsData);
       wx.removeStorageSync('isScanCodeQr')
@@ -521,7 +525,7 @@ Page({
             // 隐藏上拉加载框
             wx.hideLoading();
           }
-
+          wx.hideLoading();
         } else {
           // 隐藏导航栏加载框
           wx.hideNavigationBarLoading();
