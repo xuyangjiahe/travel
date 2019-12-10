@@ -31,7 +31,8 @@
     <view class="qr_ifram">
     <!-- 二维码弹窗 -->
       <view class="ifram_box">
-        <image class="ifram_img" src="{{qrURLSave}}"></image>
+        <canvas class="ifram_img" canvas-id="myQrcode" style="background:#fff;width:{{code_w}}px; height:{{code_w}}px;"/>
+        <!-- <image class="ifram_img" src="{{qrURLSave}}"></image> -->
         <!-- <canvas class="ifram_img" canvas-id="myQrcode" style="background:#fff;width: 200px;height: 200px;"/> -->
         <!-- <canvas class="ifram_img" canvas-id="myQrcode" /> -->
         <view class="qr_tip1">点击保存二维码</view>

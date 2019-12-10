@@ -19,7 +19,7 @@ Page({
     console.log(event);
     let that = this;
     wx.navigateTo({
-      url: '/pages/orderDetail/orderDetail?orderId=' + event.currentTarget.dataset.orderid + '&agencyId=' + that.data.agencyId,
+      url: '/pages/orderDetail/orderDetail?orderId=' + event.currentTarget.dataset.orderid + '&agencyId=' + that.data.agencyId + '&listTitile=' + event.currentTarget.dataset.listtitle,
       // url: '/pages/orderDetailShare/orderDetailShare?orderId=' + event.currentTarget.dataset.orderid + '&agencyId=' + that.data.agencyId,
     })
   },

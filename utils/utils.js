@@ -24,35 +24,7 @@ export default {
       // eslint-disable-next-line no-useless-escape
       .replace(/&#39;/g, "\'");
   },
-  iframeInfo(isShowIfram, isShowTitle, iframTitle, iframTip, iframTtn, comIframErrNum = {}, $this) {
-    /**
-   * isShowIfram 是否显示弹窗
-   * isShowTitle 是否显示标题
-   * iframTitle 标题文字
-   * iframTip 提示文字
-   * iframTtn btn按钮文字
-   * iframNum 金额，数量等
-   * iframErrNum: 返回的错误参数，根据错误参数不同跳转不同的页面
-   * $this 当前vue对象
-  */
-    // 修改弹窗信息
-    console.log('修改弹窗信息')
-    // $this.isShowComIfram = isShowComIfram;
-    // that.isShowIfram = true,
-    $this.$store.commit(
-      'setIsComIfram',
-      {
-        'isShowIfram': isShowIfram,
-        'isShowTitle': isShowTitle,
-        'iframTitle': iframTitle,
-        'iframTip': iframTip,
-        'iframTtn': iframTtn,
-        'comIframErrNum': comIframErrNum
-      }
-    );
-    // $this.conInfo = conInfo;
-    // $this.comIframErrNum = comIframErrNum;
-  },
+  
   getUrlParams (name) {
     // 获取url中参数
     var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');

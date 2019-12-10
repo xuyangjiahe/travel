@@ -60,6 +60,7 @@ Page({
     switerimgHeight: '',
     playBtn: false, // 播放按钮
     agencyId:'', // 旅行社id
+    isVideoPlayEnd: false, // 视频是否播放完成
   },
   showPopupQr: function () {
     let that = this;
@@ -70,6 +71,36 @@ Page({
   },
   onCloseQr() {
     this.setData({ showQr: false });
+  },
+  
+  getLineDetailAgain(lineId, cityData, salesmanId ) {
+    // 增加播放次数：
+    let that = this;
+    let params = {
+      "cmd": "routedetail",
+      "rid": lineId,
+      "province": cityData,
+      "saleid": salesmanId // 选填
+    };
+
+    http.postD(params)
+      .then((res) => {
+        if (res.data.result == '0') {
+          let resData = res.data;
+          that.setData({
+            playTimes: resData.datanum ? resData.datanum : 0,
+          })
+          console.log('videoUrl: ', that.data.videoUrl);
+        } else {
+          wx.showToast({
+            title: res.data.resultNote,
+            icon: 'none'
+          })
+        }
+      })
+      .catch((res) => {
+
+      })
   },
   // 获取地理坐标并转化
   
@@ -374,6 +405,9 @@ Page({
                           wx.showToast({
                             title: '您还不是销售员，请先注册',
                             icon: 'none'
+                          })
+                          wx.redirectTo({
+                            url: '/pages/salesmanInfo/salesmanInfo',
                           })
                           // 扫描进入 又是第一次进入2：没有销售员信息； 3：有销售员信息
                           wx.setStorageSync('salesManNoCommpleteInfo', '2');
@@ -680,17 +714,51 @@ Page({
   },
   playVideoEnd(e) {
     console.log('视频播放完成：', e)
+    let that = this;
+    this.setData({
+      playBtn: true,
+      isVideoPlayEnd: true
+    })
+  },
+  playVideoPause(e) {
+    // 点击暂停
+    let that = this;
     this.setData({
       playBtn: true
     })
+    console.log('视频播放暂停完成：', e)
+    // const playCon = wx.createVideoContext('myVideo', this);
+    // playCon.pause();
+  },
+  playVideoPlay(e) {
+    console.log('视频播放：', e);
+    let that = this;
+    // this.playVideoAgain();
+    that.setData({
+      playBtn: false
+    })
+    if (that.data.isVideoPlayEnd) {
+      that.getLineDetailAgain(that.data.lineId, that.data.cityData, that.data.salesmanId);
+      that.setData({
+        isVideoPlayEnd: false
+      })
+    }
   },
   playVideoAgain(e) {
     console.log('播放视频');
+    let that = this;
     const playCon = wx.createVideoContext('myVideo', this);
     playCon.play();
-    this.setData({
+    that.setData({
       playBtn: false
     })
+    if (that.data.isVideoPlayEnd) {
+      that.getLineDetailAgain(that.data.lineId, that.data.cityData, that.data.salesmanId);
+      that.setData({
+        isVideoPlayEnd: false
+      })
+    }
+    
   },
   
 

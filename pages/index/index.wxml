@@ -37,6 +37,8 @@
   <van-popup show="{{ show }}" bind:close="onClose" overlay-style="background-color: rgba(255,255,255,0.7);height:100%;width: 100%;" custom-style="background-color: rgba(255,255,255,0);">
     <view class="popup_bg" bindtap="onClose">
       <!-- <view class="login_type sale" catchtap="saleLogin" >销售员登录</view> -->
+      <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">销售员登录2</button> -->
+
       <button class="login_type sale"  open-type="getUserInfo" bindgetuserinfo="saleLogin">销售员登录</button>
       <view class="login_type trale" catchtap="agencyLogin">旅行社登录</view>
       <!-- <view class="login_type vistor" catchtap="travelLogin" open-type="getUserInfo">游客登录</view> -->

@@ -13,7 +13,7 @@ Page({
     orderId: '',
     agencyId: '',
     orderInfo: {},
-    
+    listTitile: '',
   },
   confirmOrder() {
     // 核销订单
@@ -81,7 +81,8 @@ Page({
     console.log('orderDetail optionsData:', optionsData);
     if (optionsData.orderId) {
       that.setData({
-        orderId: optionsData.orderId
+        orderId: optionsData.orderId,
+        listTitile: optionsData.listTitile
       })
     }
     if (optionsData.agencyId) {
@@ -145,7 +146,7 @@ Page({
       console.log(ops.target)
     }
     return {
-      title: '旅游小程序', 
+      title: that.data.listTitile, 
       path: '/pages/orderDetailShare/orderDetailShare?orderId=' + that.data.orderId + '&agencyId=' + that.data.agencyId,  // 路径，传递参数到指定页面。
       imageUrl: '', // 分享的封面图
       success: (res) => {

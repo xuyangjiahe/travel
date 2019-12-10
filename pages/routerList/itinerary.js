@@ -1,4 +1,5 @@
 // pages/itinerary/itinerary.js
+const config = require("../../config.js");
 const util = require('../../utils/util.js');
 import  tool from '../../utils/utils.js';
 const HTTP = require('../../utils/http-list.js');
@@ -10,6 +11,8 @@ const rate = 750.0 / W;
 
 // 300rpx 在6s上为 150px
 const code_w = 300 / rate;
+// 第二种
+import SQRCode from '../../utils/qrcode.js';
 const http = new HTTP();
 let app = getApp();
 let globalInfo = app.globalData;
@@ -35,6 +38,7 @@ Page({
     image: '',
     code_w: code_w,
     qrURLSave: '',
+    qrUrlText:'',
     title: '',
     show: false,
     isShareOpen: '2', // 默认2：不显示 3：显示
@@ -45,8 +49,10 @@ Page({
     salesmanId:'', // 销售员id
   },
   showPopupQr: function () {
+    let that = this;
     this.setData({ showQr: true });
-    this.makeQrCode();
+    // this.makeQrCode();
+    this.createQrCode(that.data.qrUrlText, 'myQrcode', that.data.code_w, that.data.code_w)
   },
 
   onCloseQr() {
@@ -83,8 +89,10 @@ Page({
   },
   makeQrCode() {
     let that = this;
+    // 这个不用 20191210
     qrcode = new QRCode('myQrcode', {
-      text: that.data.qrURLSave,
+      // text: that.data.qrURLSave,
+      text: that.data.qrUrlText,
       width: code_w,
       height: code_w,
       padding: 12, // 生成二维码四周自动留边宽度，不传入默认为0
@@ -92,12 +100,38 @@ Page({
       callback: (res) => {
         console.log(res.path)
         // 接下来就可以直接调用微信小程序的api保存到本地或者将这张二维码直接画在海报上面去，看各自需求
-        // that.setData({
-        //   qrURLSave: res.path
-        // })
+        that.setData({
+          qrURLSave: res.path
+        })
       }
     })
   },
+  createQrCode: function (url, canvasId, cavW, cavH) {
+    //调用插件中的draw方法，绘制二维码图片
+    console.log('createQrCode url:', url);
+    SQRCode.api.draw(url, canvasId, cavW, cavH);
+    setTimeout(() => { this.canvasToTempImage(); }, 1000);
+
+  },
+  //获取临时缓存照片路径，存入data中
+  canvasToTempImage: function () {
+    var that = this;
+    wx.canvasToTempFilePath({
+      canvasId: 'myQrcode',
+      success: function (res) {
+        var tempFilePath = res.tempFilePath;
+        console.log('tempFilePath', tempFilePath);
+        that.setData({
+          qrURLSave: tempFilePath,
+          // canvasHidden:true
+        });
+      },
+      fail: function (res) {
+        console.log(res);
+      }
+    });
+  },
+
   saveQrCode(){
     // 保存二维码
     let that = this;
@@ -106,30 +140,52 @@ Page({
       success: function (res) {
         console.log(res.tapIndex)
         if (res.tapIndex == 0) {
+          
           console.log('qrcode:', qrcode);
           wx.getSetting({
             success(res) {
               console.log('getSetting res:', res);
-              if (res.authSetting['scope.userInfo']) {
+              if (res.authSetting['scope.userInfo'] || res.authSetting['scope.userLocation'] ||res.authSetting['scope.writePhotosAlbum'] ) {
                 console.log('授权成功')
-                wx.downloadFile({
-                  url: that.data.qrURLSave, //仅为示例，并非真实的资源
-                  success(res) {
-                    // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
-                    if (res.statusCode === 200) {
+                // 网路地址需要下载到本地 并获取本地路径
+                // wx.downloadFile({
+                //   url: that.data.qrURLSave, //仅为示例，并非真实的资源
+                //   success(res) {
+                //     // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+                //     if (res.statusCode == 200) {
+                  // wx.getImageInfo({
+                  //   src: res.tempFilePaths,
+                  //   success (res) {
+                  //     console.log(res.width)
+                  //     console.log(res.height)
+                  //   }
+                  // })
                       wx.saveImageToPhotosAlbum({
-                        filePath: res.tempFilePath,
+                        filePath: that.data.qrURLSave,
                         success(saveRes) {
-                          that.setData({ showQr: false });
                           wx.showToast({
                             title: '已保存至相册',
                           })
+                          that.setData({ showQr: false });
+                        },
+                        complete(completeRES) {
+                          console.log('completeRES:',completeRES)
+                          // wx.showModal({
+                          //   title: 'saveImageToPhotosAlbum completeRES',
+                          //   content: JSON.stringify(completeRES),
+                          //   success(res) {
+                          //     if (res.confirm) {
+                          //       console.log('用户点击确定')
+                          //     }
+                          //   }
+                          // })
                         }
                       })
-                    }
-                  }
-                })
-              } 
+                //     }
+                //   }
+                // })
+
+              }
             }
           }) 
         }
@@ -219,6 +275,9 @@ Page({
                           wx.showToast({
                             title: '您还不是销售员，请先注册',
                             icon: 'none'
+                          })
+                          wx.redirectTo({
+                            url: '/pages/salesmanInfo/salesmanInfo',
                           })
                           // 扫描进入 又是第一次进入2：没有销售员信息； 3：有销售员信息
                           wx.setStorageSync('salesManNoCommpleteInfo', '2');
@@ -388,8 +447,20 @@ Page({
     }
   
     
-    this.setData({
-      qrURLSave: wx.getStorageSync('qrCodeInfo')
+    // this.setData({
+    //   qrURLSave: wx.getStorageSync('qrCodeInfo')
+    // })
+    /**
+     * 二维码规则
+     * https://xcx.fxly5166.com/api/service?uid=13&type=1&isScanCodeQr=2
+     * @param {String} uid 用户id（只有旅行社有：agencyId）
+     * @param {String} type 线路类型 1、2、3、4
+     * @param {String} isScanCodeQr 固定标识：2
+     * 
+     * */
+   
+    that.setData({
+      qrUrlText: config.api_blinl_ip +  "api/service?uid=" + that.data.agencyId +"&type="+that.data.lineTypeId+"&isScanCodeQr=2"
     })
     wx.getSystemInfo({
       success: function (res) {
