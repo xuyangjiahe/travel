@@ -61,6 +61,7 @@ Page({
     playBtn: false, // 播放按钮
     agencyId:'', // 旅行社id
     isVideoPlayEnd: false, // 视频是否播放完成
+    timeOutTimer: null, // 三秒内没有操作默认执行
   },
   showPopupQr: function () {
     let that = this;
@@ -348,6 +349,10 @@ Page({
   saleLogin(e) {
     // 销售员登录
     let that = this;
+     // 清除定时器
+     that.setData({
+      timeOutTimer: null
+    })
     console.log('e', e)
     that.setData({
       userType: '2'
@@ -449,6 +454,10 @@ Page({
   travelLogin(e) {
     // 游客登录
     let that = this;
+    // 清除定时器
+    that.setData({
+      timeOutTimer: null
+    })
     // that.setData({
     //   userType: '3'
     // })
@@ -524,6 +533,7 @@ Page({
           salesmanId: salesmanId,
         })
         // that.getLineDetail(that.data.lineId, that.data.cityData, that.data.salesmanId);
+        
       } else {
         that.setData({
           salesmanId: '',
@@ -531,6 +541,11 @@ Page({
         // that.getLineDetail(that.data.lineId, that.data.cityData);
       }
       that.showPopup();
+      that.data.timeOutTimer = setTimeout(()=> {
+        // 三秒内没有操作默认执行游客登录
+        console.log('timeOutTimer');
+        that.travelLogin();
+      }, 3000);
       
     } else {
       // 非扫普通二维码进入
