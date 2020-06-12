@@ -18,15 +18,13 @@
 
   <view class="line_vide">
   <!-- 自动定位当前城市视频 -->
-  <!-- <view>{{cityData}}</view> -->
-  <!-- http://1259760233.vod2.myqcloud.com/71f82148vodcq1259760233/692a1d875285890793868349758/7i3pNVNQ9l8A.mp4"  短视频-->
-  <!-- https://ceshi.cxzjzg.com/painting/video/20191014163938ok13.mp4  书画 -->
-  <!-- https://lvyou.cxzjzg.com/tourismprogram/userfiles/1/files/videos/videos/2019/11/O1OKxuLuZNgA.mp4 小程序-->
-  <!-- <video class="video_img"  id="myVideo" src="https://ceshi.cxzjzg.com/painting/video/20191014163938ok13.mp4"  enable-danmu="false" danmu-btn="false"  autoplay="{{true}}"  controls='{{false}}' enable-play-gesture='false' show-center-play-btn='false' bindended="playVideoEnd"></video> -->
+
     <view class="video_box" >
-    <video class="video_img" wx:if="{{videoUrl}}"  id="myVideo" src="{{videoUrl}}"  danmu-btn="{{false}}" autoplay="{{true}}"  controls='{{true}}'  show-center-play-btn="{{true}}" enable-play-gesture="{{true}}"  bindended="playVideoEnd" bindpause="playVideoPause" bindplay="playVideoPlay" show-fullscreen-btn></video>
+    <video class="video_img"   id="myVideo" src="{{videoUrl}}"  danmu-btn="{{false}}" autoplay="{{true}}"  controls='{{true}}'  show-center-play-btn="{{true}}" enable-play-gesture="{{true}}"  bindended="playVideoEnd" bindpause="playVideoPause" bindplay="playVideoPlay" show-fullscreen-btn></video>
       
-      <text class="play_times">播放量：{{playTimes}}</text>
+      <text class="play_times" wx:if="{{ 9999  > playTimes > 999 }}">播放量：1万+</text>
+      <text class="play_times" wx:elif="{{  playTimes > 9999}}">播放量：10万+</text>
+      <text class="play_times" wx:else>播放量：{{playTimes}}</text>
       <cover-image class="video_play_btn" src="../../images/play-btn.png" bindtap="playVideoAgain" wx:if="{{playBtn}}"></cover-image>
     </view>
   </view>
@@ -153,10 +151,11 @@
     
   </van-popup>
   <!-- 登录弹窗 -->
-  <van-popup show="{{ show }}"  overlay-style="background-color: rgba(255,255,255,0.7);height:100%;width: 100%;" custom-style="background-color: rgba(255,255,255,0);">
+  <!-- <van-popup show="{{ show }}"  overlay-style="background-color: rgba(255,255,255,0.7);height:100%;width: 100%;" custom-style="background-color: rgba(255,255,255,0);"> -->
+  <van-popup  position="bottom"  show="{{ show }}" overlay-style="background-color: rgba(255,255,255,0.7);height:100%;width: 100%;" custom-style="background-color: rgba(255,255,255,0);">
     <view class="popup_bg" >
       <button class="login_type sale"  open-type="getUserInfo" bindgetuserinfo="saleLogin">销售员登录</button>
-      <button class="login_type vistor"   open-type="getUserInfo" bindgetuserinfo="travelLogin">游客登录</button>
+      <!-- <button class="login_type vistor"   open-type="getUserInfo" bindgetuserinfo="travelLogin">游客登录</button> -->
     </view>
   </van-popup>
 

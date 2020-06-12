@@ -47,6 +47,7 @@ Page({
     scanCodeUrl:'/pages/routerList/itinerary', // 扫二维码跳转地址
     isScanCodeQr: '',
     salesmanId:'', // 销售员id
+    timeOutTimer: null, // 三秒内没有操作默认执行
   },
   showPopupQr: function () {
     let that = this;
@@ -211,6 +212,10 @@ Page({
   saleLogin(e) {
     // 销售员登录
     let that = this;
+    // 清除定时器
+    that.setData({
+      timeOutTimer: null
+    })
     console.log('e', e)
     // 销售员不能转发
     // wx.hideShareMenu();
@@ -323,6 +328,9 @@ Page({
   travelLogin(e) {
     // 游客登录
     let that = this;
+    that.setData({
+      timeOutTimer: null
+    })
     // wx.navigateTo({
     //   url: '/pages/visterInfo/visterInfo'
     // })
@@ -380,6 +388,11 @@ Page({
      * */ 
     //  微信扫码规则
     if (options.q !== undefined) {
+      // wx.showLoading({
+      //   title: '加载中请稍后',
+      //   mask: true,
+      //   duration: 2500
+      // })
       let getScanCodeUrl = decodeURIComponent(options.q);
       console.log('getScanCodeUrl:', getScanCodeUrl);
       let uid = tool.sendUrlToParams(getScanCodeUrl, 'uid');
@@ -399,9 +412,14 @@ Page({
       this.getLists('1', '1');
 
       console.log('微信扫描进入isScanCodeQr 1:', that.data.isScanCodeQr);
+      that.data.timeOutTimer = setTimeout(()=> {
+        // 三秒内没有操作默认执行游客登录
+        console.log('timeOutTimer');
+        that.travelLogin();
+      }, 2000);
     } else {
       wx.showLoading({
-        title: '加载中',
+        title: '加载中请稍后',
         mask: true,
       })
       let optionsData = options;

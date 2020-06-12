@@ -68,7 +68,6 @@ Page({
     this.setData({ showQr: true });
     // this.makeQrCode();
     this.createQrCode(that.data.qrUrlText, 'myQrcode', that.data.code_w, that.data.code_w)
-
   },
   onCloseQr() {
     this.setData({ showQr: false });
@@ -106,13 +105,13 @@ Page({
   // 获取地理坐标并转化
   
   getLineDetail(lineId, cityData, salesmanId ) {
-    // 请求 {"cmd":"routedetail","rid":"efe6534b184a461880acbe72107670a9","province":"河南省","saleid":"5b9bb42f238c46da851ad4b70599cd9a"} ?lineId=' + that.data.lineId + '&isShareOpen=2&salesmanId=' + that.data.salesmanId + '&lineTypeId=' + that.data.lineTypeId,
-   
+  
     let that = this;
     let params = {
       "cmd": "routedetail",
       "rid": lineId,
       "province": cityData,
+      // "province": '河北省',
       "saleid": salesmanId // 选填
     };
    
@@ -510,6 +509,11 @@ Page({
 
     if (options.q !== undefined) {
       // 扫码进入
+      // wx.showLoading({
+      //   title: '加载中请稍后',
+      //   mask: true,
+      //   duration: 2500
+      // })
       let getScanCodeUrl = decodeURIComponent(options.q);
       console.log('getScanCodeUrl:', getScanCodeUrl);
       let lineId = tool.sendUrlToParams(getScanCodeUrl, 'lineId');
@@ -545,12 +549,12 @@ Page({
         // 三秒内没有操作默认执行游客登录
         console.log('timeOutTimer');
         that.travelLogin();
-      }, 3000);
+      }, 2000);
       
     } else {
       // 非扫普通二维码进入
       wx.showLoading({
-        title: '加载中',
+        title: '加载中请稍后',
         mask: true,
       })
       var optionsData = options;
