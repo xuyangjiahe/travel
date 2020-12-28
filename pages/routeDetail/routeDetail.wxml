@@ -22,9 +22,9 @@
     <view class="video_box" >
     <video class="video_img"   id="myVideo" src="{{videoUrl}}"  danmu-btn="{{false}}" autoplay="{{true}}"  controls='{{true}}'  show-center-play-btn="{{true}}" enable-play-gesture="{{true}}"  bindended="playVideoEnd" bindpause="playVideoPause" bindplay="playVideoPlay" show-fullscreen-btn></video>
       
-      <text class="play_times" wx:if="{{ 9999  > playTimes > 999 }}">播放量：1万+</text>
-      <text class="play_times" wx:elif="{{  playTimes > 9999}}">播放量：10万+</text>
-      <text class="play_times" wx:else>播放量：{{playTimes}}</text>
+      <!-- <text class="play_times" wx:if="{{ 9999  > playTimes > 999 }}">播放量：1万+</text>
+      <text class="play_times" wx:elif="{{  playTimes > 9999}}">播放量：10万+</text> -->
+      <text class="play_times" >播放量：{{playTimes}}</text>
       <cover-image class="video_play_btn" src="../../images/play-btn.png" bindtap="playVideoAgain" wx:if="{{playBtn}}"></cover-image>
     </view>
   </view>

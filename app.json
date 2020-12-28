@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/salesmanInfo/salesmanInfo",
+   
     "pages/index/index",
     "pages/logs/logs",
     "pages/completeInfo/completeInfo",
@@ -11,7 +11,7 @@
     "pages/routerList/itinerary",
     "pages/confirmList/travelList",
     "pages/routeDetail/routeDetail",
-    
+    "pages/salesmanInfo/salesmanInfo",
     "pages/salesmanIndex/salesmanIndex",
     "pages/discountCoupon/discountCoupon",
     "pages/visterInfo/visterInfo",

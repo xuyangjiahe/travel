@@ -75,7 +75,7 @@
   position: absolute;
   right: 30rpx;
   bottom:20rpx;
-  width: 153rpx;
+  width: auto;
   height: 40rpx;
   line-height: 40rpx;
   text-align: center;

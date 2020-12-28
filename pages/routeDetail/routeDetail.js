@@ -62,6 +62,7 @@ Page({
     agencyId:'', // 旅行社id
     isVideoPlayEnd: false, // 视频是否播放完成
     timeOutTimer: null, // 三秒内没有操作默认执行
+    optionsData: ''
   },
   showPopupQr: function () {
     let that = this;
@@ -111,7 +112,7 @@ Page({
       "cmd": "routedetail",
       "rid": lineId,
       "province": cityData,
-      // "province": '河北省',
+      // "province": '辽宁',
       "saleid": salesmanId // 选填
     };
    
@@ -488,7 +489,10 @@ Page({
     console.log('onLoad options:', options);
     
     let that = this
-    
+    let optionsData = options;
+    that.setData({
+      optionsData: optionsData
+    })
     // 系统信息的高度
     // salesmanId // 销售员
     // https://lvyou.cxzjzg.com/tourismprogram/api/service1?lineId=efe6534b184a461880acbe72107670a9&isScanCodeQr=2&salesmanId=5b9bb42f238c46da851ad4b70599cd9a&lineTypeId=1&province=河南省&userType=2,
@@ -536,13 +540,10 @@ Page({
         that.setData({
           salesmanId: salesmanId,
         })
-        // that.getLineDetail(that.data.lineId, that.data.cityData, that.data.salesmanId);
-        
       } else {
         that.setData({
           salesmanId: '',
         })
-        // that.getLineDetail(that.data.lineId, that.data.cityData);
       }
       that.showPopup();
       that.data.timeOutTimer = setTimeout(()=> {
@@ -553,152 +554,152 @@ Page({
       
     } else {
       // 非扫普通二维码进入
-      wx.showLoading({
-        title: '加载中请稍后',
-        mask: true,
-      })
-      var optionsData = options;
-      console.log('非扫普通二维码进入optionsData:', optionsData);
-      if (wx.getStorageSync('isShareOpen') == '2' || optionsData.isShareOpen == '2') {
-        // 转发进入
-        that.setData({
-          isShareOpen: '2',
-          isScanCodeQr: '2'
-        })
-      } else {
-        if (optionsData.isShareOpen) {
-          that.setData({
-            isShareOpen: optionsData.isShareOpen,
-          })
-        }
-      }
-      if (wx.getStorageSync('isScanCodeQr') == '2') {
-        that.setData({
-          isScanCodeQr: wx.getStorageSync('isScanCodeQr'),
-        })
-      } else {
-        wx.removeStorageSync('isScanCodeQr');
-      }
+      // wx.showLoading({
+      //   title: '加载中请稍后',
+      //   mask: true,
+      // })
+      // var optionsData = options;
+      // console.log('非扫普通二维码进入optionsData:', optionsData);
+      // if (wx.getStorageSync('isShareOpen') == '2' || optionsData.isShareOpen == '2') {
+      //   // 转发进入
+      //   that.setData({
+      //     isShareOpen: '2',
+      //     isScanCodeQr: '2'
+      //   })
+      // } else {
+      //   if (optionsData.isShareOpen) {
+      //     that.setData({
+      //       isShareOpen: optionsData.isShareOpen,
+      //     })
+      //   }
+      // }
+      // if (wx.getStorageSync('isScanCodeQr') == '2') {
+      //   that.setData({
+      //     isScanCodeQr: wx.getStorageSync('isScanCodeQr'),
+      //   })
+      // } else {
+      //   wx.removeStorageSync('isScanCodeQr');
+      // }
      
-      if (optionsData.lineId) {
-        that.setData({
-          lineId: optionsData.lineId,
-        })
-      }
+      // if (optionsData.lineId) {
+      //   that.setData({
+      //     lineId: optionsData.lineId,
+      //   })
+      // }
       
-      if (optionsData.salesmanId) {
-        that.setData({
-          salesmanId: optionsData.salesmanId,
-        })
-      }
-      if (optionsData.lineTypeId) {
-        that.setData({
-          lineTypeId: optionsData.lineTypeId
-        })
-      }
-      if (optionsData.userType) {
-        that.setData({
-          userType: optionsData.userType
-        })
-      }
-      // 存储旅行社信息返回键使用
-        that.setData({
-          agencyId: optionsData.agencyId ? optionsData.agencyId : wx.getStorageSync('agencyId')
-        })
+      // if (optionsData.salesmanId) {
+      //   that.setData({
+      //     salesmanId: optionsData.salesmanId,
+      //   })
+      // }
+      // if (optionsData.lineTypeId) {
+      //   that.setData({
+      //     lineTypeId: optionsData.lineTypeId
+      //   })
+      // }
+      // if (optionsData.userType) {
+      //   that.setData({
+      //     userType: optionsData.userType
+      //   })
+      // }
+      // // 存储旅行社信息返回键使用
+      //   that.setData({
+      //     agencyId: optionsData.agencyId ? optionsData.agencyId : wx.getStorageSync('agencyId')
+      //   })
       
       
-      console.log('isShareOpenisShareOpen:', that.data.isShareOpen); // userType
+      // console.log('isShareOpenisShareOpen:', that.data.isShareOpen); // userType
       
-      wx.login({
-        success: () => {
-          wx.getSetting({
-            success: (res1) => {
-              console.log('getSetting res1', res1);
-              wx.getLocation({
-                type: 'wgs84',
-                success(res) {
-                  console.log('地理位置res', res);
-                  map.getAddress(res.latitude, res.longitude, (successRes) => {
-                    console.log('successRes:', successRes);
-                    that.setData({
-                      cityData: successRes.result.ad_info.province
-                    })
-                    console.log('globalInfo.userTypeglobalInfo.userTypeglobalInfo.userType', globalInfo.userType)
-                    if (optionsData.isShareOpen == '2') {
-                      // 右上角分享进入
+      // wx.login({
+      //   success: () => {
+      //     wx.getSetting({
+      //       success: (res1) => {
+      //         console.log('getSetting res1', res1);
+      //         wx.getLocation({
+      //           type: 'wgs84',
+      //           success(res) {
+      //             console.log('地理位置res', res);
+      //             map.getAddress(res.latitude, res.longitude, (successRes) => {
+      //               console.log('successRes:', successRes);
+      //               console.log('successRes.result.ad_info.province:', successRes.result.ad_info.province);
+      //               that.setData({
+      //                 cityData: successRes.result.ad_info.province
+      //               })
+      //               console.log('globalInfo.userTypeglobalInfo.userTypeglobalInfo.userType', globalInfo.userType)
+      //               if (optionsData.isShareOpen == '2') {
+      //                 // 右上角分享进入
 
-                      if (that.data.userType == '2') {
-                        // 销售员
-                        that.setData({
-                          userType: '2',
-                          lineId: wx.getStorageSync('lineId') ? wx.getStorageSync('lineId') : that.data.lineId,
-                          isShareOpen: wx.getStorageSync('isShareOpen') ? wx.getStorageSync('isShareOpen') : that.data.isShareOpen,
-                          salesmanId: wx.getStorageSync('userId') ? wx.getStorageSync('userId') : that.data.salesmanId,
-                          lineTypeId: wx.getStorageSync('lineTypeId') ? wx.getStorageSync('lineTypeId') : that.data.lineId
-                        })
-                        that.getLineDetail(that.data.lineId, successRes.result.ad_info.province, that.data.salesmanId);
-                        // 二维合成内容
-                        that.setData({
-                          qrUrlText: config.api_blinl_ip +  "api/service1?lineId=" + that.data.lineId + "&isScanCodeQr=2&salesmanId=" + that.data.salesmanId + "&lineTypeId=" + that.data.lineId + "&province=" + that.data.cityData + "&userType=" + that.data.userType
-                        })
-                      } else {
-                        // 旅行社
-                        // this.getLocationFun(wx.getStorageSync('lineId'));
-                        that.setData({
-                          userType: '1',
-                          lineId: wx.getStorageSync('lineId') ? wx.getStorageSync('lineId') : that.data.lineId,
-                          isShareOpen: wx.getStorageSync('isShareOpen') ? wx.getStorageSync('isShareOpen') : that.data.isShareOpen,
-                          lineTypeId: wx.getStorageSync('lineTypeId') ? wx.getStorageSync('lineTypeId') : that.data.lineId
-                        })
-                        that.getLineDetail(that.data.lineId, successRes.result.ad_info.province);
-                        // 旅行社没有销售员信息，不用传假销售员salesmanId
-                        that.setData({
-                          qrUrlText: config.api_blinl_ip + "api/service1?lineId=" + that.data.lineId + "&isScanCodeQr=2" + "&lineTypeId=" + that.data.lineId + "&province=" + that.data.cityData + "&userType=1"
-                        })
-                      }
+      //                 if (that.data.userType == '2') {
+      //                   // 销售员
+      //                   that.setData({
+      //                     userType: '2',
+      //                     lineId: wx.getStorageSync('lineId') ? wx.getStorageSync('lineId') : that.data.lineId,
+      //                     isShareOpen: wx.getStorageSync('isShareOpen') ? wx.getStorageSync('isShareOpen') : that.data.isShareOpen,
+      //                     salesmanId: wx.getStorageSync('userId') ? wx.getStorageSync('userId') : that.data.salesmanId,
+      //                     lineTypeId: wx.getStorageSync('lineTypeId') ? wx.getStorageSync('lineTypeId') : that.data.lineId
+      //                   })
+      //                   that.getLineDetail(that.data.lineId, that.data.cityData, that.data.salesmanId);
+      //                   // 二维合成内容
+      //                   that.setData({
+      //                     qrUrlText: config.api_blinl_ip +  "api/service1?lineId=" + that.data.lineId + "&isScanCodeQr=2&salesmanId=" + that.data.salesmanId + "&lineTypeId=" + that.data.lineId + "&province=" + that.data.cityData + "&userType=" + that.data.userType
+      //                   })
+      //                 } else {
+      //                   // 旅行社
+      //                   // this.getLocationFun(wx.getStorageSync('lineId'));
+      //                   that.setData({
+      //                     userType: '1',
+      //                     lineId: wx.getStorageSync('lineId') ? wx.getStorageSync('lineId') : that.data.lineId,
+      //                     isShareOpen: wx.getStorageSync('isShareOpen') ? wx.getStorageSync('isShareOpen') : that.data.isShareOpen,
+      //                     lineTypeId: wx.getStorageSync('lineTypeId') ? wx.getStorageSync('lineTypeId') : that.data.lineId
+      //                   })
+      //                   that.getLineDetail(that.data.lineId, that.data.cityData);
+      //                   // 旅行社没有销售员信息，不用传假销售员salesmanId
+      //                   that.setData({
+      //                     qrUrlText: config.api_blinl_ip + "api/service1?lineId=" + that.data.lineId + "&isScanCodeQr=2" + "&lineTypeId=" + that.data.lineId + "&province=" + that.data.cityData + "&userType=1"
+      //                   })
+      //                 }
 
-                    } else {
+      //               } else {
 
-                      if (globalInfo.userType == '2') {
-                        // 销售员
-                        that.setData({
-                          userType: '2',
-                          lineId: wx.getStorageSync('lineId') ? wx.getStorageSync('lineId') : that.data.lineId,
-                          isShareOpen: wx.getStorageSync('isShareOpen') ? wx.getStorageSync('isShareOpen') : that.data.isShareOpen,
-                          salesmanId: wx.getStorageSync('userId') ? wx.getStorageSync('userId') : that.data.salesmanId,
-                          lineTypeId: wx.getStorageSync('lineTypeId') ? wx.getStorageSync('lineTypeId') : that.data.lineId
-                        })
-                        that.getLineDetail(that.data.lineId, successRes.result.ad_info.province, that.data.salesmanId);
-                        // 二维合成内容
-                        that.setData({
-                          qrUrlText: config.api_blinl_ip + "api/service1?lineId=" + that.data.lineId + "&isScanCodeQr=2&salesmanId=" + that.data.salesmanId + "&lineTypeId=" + that.data.lineId + "&province=" + that.data.cityData + "&userType=" + that.data.userType
-                        })
-                      } else {
-                        // 旅行社
-                        // this.getLocationFun(wx.getStorageSync('lineId'));
-                        that.setData({
-                          userType: '1',
-                          lineId: wx.getStorageSync('lineId') ? wx.getStorageSync('lineId') : that.data.lineId,
-                          isShareOpen: wx.getStorageSync('isShareOpen') ? wx.getStorageSync('isShareOpen') : that.data.isShareOpen,
-                          lineTypeId: wx.getStorageSync('lineTypeId') ? wx.getStorageSync('lineTypeId') : that.data.lineId
-                        })
-                        that.getLineDetail(that.data.lineId, successRes.result.ad_info.province);
-                        // 旅行社没有销售员信息，不用传假销售员salesmanId
-                        that.setData({
-                          qrUrlText: config.api_blinl_ip + "api/service1?lineId=" + that.data.lineId + "&isScanCodeQr=2" + "&lineTypeId=" + that.data.lineId + "&province=" + that.data.cityData + "&userType=1"
-                        })
-                      }
+      //                 if (globalInfo.userType == '2') {
+      //                   // 销售员
+      //                   that.setData({
+      //                     userType: '2',
+      //                     lineId: wx.getStorageSync('lineId') ? wx.getStorageSync('lineId') : that.data.lineId,
+      //                     isShareOpen: wx.getStorageSync('isShareOpen') ? wx.getStorageSync('isShareOpen') : that.data.isShareOpen,
+      //                     salesmanId: wx.getStorageSync('userId') ? wx.getStorageSync('userId') : that.data.salesmanId,
+      //                     lineTypeId: wx.getStorageSync('lineTypeId') ? wx.getStorageSync('lineTypeId') : that.data.lineId
+      //                   })
+      //                   that.getLineDetail(that.data.lineId, that.data.cityData, that.data.salesmanId);
+      //                   // 二维合成内容
+      //                   that.setData({
+      //                     qrUrlText: config.api_blinl_ip + "api/service1?lineId=" + that.data.lineId + "&isScanCodeQr=2&salesmanId=" + that.data.salesmanId + "&lineTypeId=" + that.data.lineId + "&province=" + that.data.cityData + "&userType=" + that.data.userType
+      //                   })
+      //                 } else {
+      //                   // 旅行社
+      //                   // this.getLocationFun(wx.getStorageSync('lineId'));
+      //                   that.setData({
+      //                     userType: '1',
+      //                     lineId: wx.getStorageSync('lineId') ? wx.getStorageSync('lineId') : that.data.lineId,
+      //                     isShareOpen: wx.getStorageSync('isShareOpen') ? wx.getStorageSync('isShareOpen') : that.data.isShareOpen,
+      //                     lineTypeId: wx.getStorageSync('lineTypeId') ? wx.getStorageSync('lineTypeId') : that.data.lineId
+      //                   })
+      //                   that.getLineDetail(that.data.lineId, that.data.cityData);
+      //                   // 旅行社没有销售员信息，不用传假销售员salesmanId
+      //                   that.setData({
+      //                     qrUrlText: config.api_blinl_ip + "api/service1?lineId=" + that.data.lineId + "&isScanCodeQr=2" + "&lineTypeId=" + that.data.lineId + "&province=" + that.data.cityData + "&userType=1"
+      //                   })
+      //                 }
 
-                    }
+      //               }
                     
-                  })
-                }
-              })
-
-            }
-          })
-        }
-      })
+      //             })
+      //           }
+      //         })
+      //       }
+      //     })
+      //   }
+      // })
     }
     wx.getSystemInfo({
       success: function (res) {
@@ -786,7 +787,7 @@ Page({
    */
   onReady: function (options) {
     console.log('onReady options:', options);
-
+    
   },
 
   /**
@@ -794,7 +795,159 @@ Page({
    */
   onShow: function (options) {
     console.log('onShow options:', options);
-    console.log('onShow  getCurrentPages', getCurrentPages());
+    let that = this;
+    if (that.data.optionsData.q !== undefined) {
+
+    } else {
+      // 非扫普通二维码进入
+      wx.showLoading({
+        title: '加载中请稍后',
+        mask: true,
+      })
+      var optionsData = that.data.optionsData;
+      console.log('非扫普通二维码进入optionsData:', optionsData);
+      if (wx.getStorageSync('isShareOpen') == '2' || optionsData.isShareOpen == '2') {
+        // 转发进入
+        that.setData({
+          isShareOpen: '2',
+          isScanCodeQr: '2'
+        })
+      } else {
+        if (optionsData.isShareOpen) {
+          that.setData({
+            isShareOpen: optionsData.isShareOpen,
+          })
+        }
+      }
+      if (wx.getStorageSync('isScanCodeQr') == '2') {
+        that.setData({
+          isScanCodeQr: wx.getStorageSync('isScanCodeQr'),
+        })
+      } else {
+        wx.removeStorageSync('isScanCodeQr');
+      }
+     
+      if (optionsData.lineId) {
+        that.setData({
+          lineId: optionsData.lineId,
+        })
+      }
+      
+      if (optionsData.salesmanId) {
+        that.setData({
+          salesmanId: optionsData.salesmanId,
+        })
+      }
+      if (optionsData.lineTypeId) {
+        that.setData({
+          lineTypeId: optionsData.lineTypeId
+        })
+      }
+      if (optionsData.userType) {
+        that.setData({
+          userType: optionsData.userType
+        })
+      }
+      // 存储旅行社信息返回键使用
+        that.setData({
+          agencyId: optionsData.agencyId ? optionsData.agencyId : wx.getStorageSync('agencyId')
+        })
+      
+      
+      console.log('isShareOpenisShareOpen:', that.data.isShareOpen); // userType
+      
+      wx.login({
+        success: () => {
+          wx.getSetting({
+            success: (res1) => {
+              console.log('getSetting res1', res1);
+              wx.getLocation({
+                type: 'wgs84',
+                success(res) {
+                  console.log('地理位置res', res);
+                  map.getAddress(res.latitude, res.longitude, (successRes) => {
+                    console.log('successRes:', successRes);
+                    console.log('successRes.result.ad_info.province:', successRes.result.ad_info.province);
+                    that.setData({
+                      cityData: successRes.result.ad_info.province
+                    })
+                    console.log('globalInfo.userTypeglobalInfo.userTypeglobalInfo.userType', globalInfo.userType)
+                    if (optionsData.isShareOpen == '2') {
+                      // 右上角分享进入
+
+                      if (that.data.userType == '2') {
+                        // 销售员
+                        that.setData({
+                          userType: '2',
+                          lineId: wx.getStorageSync('lineId') ? wx.getStorageSync('lineId') : that.data.lineId,
+                          isShareOpen: wx.getStorageSync('isShareOpen') ? wx.getStorageSync('isShareOpen') : that.data.isShareOpen,
+                          salesmanId: wx.getStorageSync('userId') ? wx.getStorageSync('userId') : that.data.salesmanId,
+                          lineTypeId: wx.getStorageSync('lineTypeId') ? wx.getStorageSync('lineTypeId') : that.data.lineId
+                        })
+                        that.getLineDetail(that.data.lineId, that.data.cityData, that.data.salesmanId);
+                        // 二维合成内容
+                        that.setData({
+                          qrUrlText: config.api_blinl_ip +  "api/service1?lineId=" + that.data.lineId + "&isScanCodeQr=2&salesmanId=" + that.data.salesmanId + "&lineTypeId=" + that.data.lineId + "&province=" + that.data.cityData + "&userType=" + that.data.userType
+                        })
+                      } else {
+                        // 旅行社
+                        // this.getLocationFun(wx.getStorageSync('lineId'));
+                        that.setData({
+                          userType: '1',
+                          lineId: wx.getStorageSync('lineId') ? wx.getStorageSync('lineId') : that.data.lineId,
+                          isShareOpen: wx.getStorageSync('isShareOpen') ? wx.getStorageSync('isShareOpen') : that.data.isShareOpen,
+                          lineTypeId: wx.getStorageSync('lineTypeId') ? wx.getStorageSync('lineTypeId') : that.data.lineId
+                        })
+                        that.getLineDetail(that.data.lineId, that.data.cityData);
+                        // 旅行社没有销售员信息，不用传假销售员salesmanId
+                        that.setData({
+                          qrUrlText: config.api_blinl_ip + "api/service1?lineId=" + that.data.lineId + "&isScanCodeQr=2" + "&lineTypeId=" + that.data.lineId + "&province=" + that.data.cityData + "&userType=1"
+                        })
+                      }
+
+                    } else {
+
+                      if (globalInfo.userType == '2') {
+                        // 销售员
+                        that.setData({
+                          userType: '2',
+                          lineId: wx.getStorageSync('lineId') ? wx.getStorageSync('lineId') : that.data.lineId,
+                          isShareOpen: wx.getStorageSync('isShareOpen') ? wx.getStorageSync('isShareOpen') : that.data.isShareOpen,
+                          salesmanId: wx.getStorageSync('userId') ? wx.getStorageSync('userId') : that.data.salesmanId,
+                          lineTypeId: wx.getStorageSync('lineTypeId') ? wx.getStorageSync('lineTypeId') : that.data.lineId
+                        })
+                        that.getLineDetail(that.data.lineId, that.data.cityData, that.data.salesmanId);
+                        // 二维合成内容
+                        that.setData({
+                          qrUrlText: config.api_blinl_ip + "api/service1?lineId=" + that.data.lineId + "&isScanCodeQr=2&salesmanId=" + that.data.salesmanId + "&lineTypeId=" + that.data.lineId + "&province=" + that.data.cityData + "&userType=" + that.data.userType
+                        })
+                      } else {
+                        // 旅行社
+                        // this.getLocationFun(wx.getStorageSync('lineId'));
+                        that.setData({
+                          userType: '1',
+                          lineId: wx.getStorageSync('lineId') ? wx.getStorageSync('lineId') : that.data.lineId,
+                          isShareOpen: wx.getStorageSync('isShareOpen') ? wx.getStorageSync('isShareOpen') : that.data.isShareOpen,
+                          lineTypeId: wx.getStorageSync('lineTypeId') ? wx.getStorageSync('lineTypeId') : that.data.lineId
+                        })
+                        that.getLineDetail(that.data.lineId, that.data.cityData);
+                        // 旅行社没有销售员信息，不用传假销售员salesmanId
+                        that.setData({
+                          qrUrlText: config.api_blinl_ip + "api/service1?lineId=" + that.data.lineId + "&isScanCodeQr=2" + "&lineTypeId=" + that.data.lineId + "&province=" + that.data.cityData + "&userType=1"
+                        })
+                      }
+
+                    }
+                    
+                  })
+                }
+              })
+            }
+          })
+        }
+      })
+    }
+
   },
 
   /**
